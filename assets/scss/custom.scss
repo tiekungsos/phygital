@@ -85,7 +85,7 @@
         .logo {
             position: absolute;
             z-index: 999;
-            top: 50%;
+            top: 25%;
             left: 2.604166666666667vw;
             img {
                 width: 280px;
@@ -99,11 +99,11 @@
             font-family: math;
             color: #E91E56;
             left: 50%;
-            top: 15%;
+            top: 5%;
         }
         .content {
             position: absolute;
-            top: 70%;
+            top: 55%;
             font-size: 18px;
             color: white;
             z-index: 100;
@@ -185,6 +185,14 @@
                 text-transform: uppercase;
                 font-size: 159px;
             }
+            .menu-link {
+                opacity: 0.5;
+                transition: height 1s;
+                transition: all 0.5s linear;
+            }
+            .menu-link:hover {
+                opacity: 1;
+            }
         }
         .bv-menu-menu {
             height: 20vh;
@@ -225,7 +233,21 @@
     .tab-child {
         background-color: #1C2C58;
         height: 100vh;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .row {
         padding-left: 0;
         padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
     }
+}
+
+.about-link {
+    color: white;
+}
+
+.about-link:hover {
+    color: white;
 }

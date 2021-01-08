@@ -18,6 +18,18 @@
      url(~assets/font/DBAdmanX.woff) format("woff");
 }
 
+@font-face {
+    font-family: "Prompt";
+    src: local("font"),
+     url(~assets/font/Prompt-Regular.woff) format("woff");
+}
+
+@font-face {
+    font-family: "Prompt-light";
+    src: local("font"),
+     url(~assets/font/Prompt-Light.woff) format("woff");
+}
+
 html {
   font-family:
     'Source Sans Pro',

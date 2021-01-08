@@ -20,11 +20,12 @@ export default {
 
     // Global CSS (https://go.nuxtjs.dev/config-css)
     css: [
-        '~/assets/scss/custom.scss'
+        '~/assets/scss/custom.scss',
+        '~/assets/scss/agency.scss'
     ],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-    plugins: [],
+    plugins: ['~/plugins/scholl.js'],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,
@@ -46,5 +47,9 @@ export default {
         scss: [
             './assets/scss/*.scss',
         ]
+    },
+    pageTransition: {
+        name: 'index',
+        mode: 'out-in'
     }
 }
