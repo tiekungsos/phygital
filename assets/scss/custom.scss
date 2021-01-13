@@ -23,12 +23,28 @@
                 transform: translate(-40%, -50%);
                 text-transform: uppercase;
                 width: fit-content;
+                @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                    left: 50%;
+                }
+                .content-left-line1 {
+                    height: 200px;
+                    overflow: hidden;
+                    @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                        height: 150px;
+                    }
+                }
             }
             h1 {
                 font-size: 180px;
+                @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                    font-size: 120px;
+                }
             }
             h2 {
                 font-size: 72px;
+                @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                    font-size: 52px;
+                }
             }
             .revert-prant {
                 width: auto;
@@ -38,11 +54,35 @@
             .revert {
                 color: #1C2C58;
                 background-color: white;
+                @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                    width: 100%;
+                }
                 h2 {
                     margin-left: 10px;
                 }
             }
             .contentLineLast {
+                overflow: hidden;
+                height: 110px;
+                .bannerType1 {
+                    font-size: 72px;
+                    margin-top: 40px;
+                    @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                        font-size: 52px;
+                    }
+                }
+                .bannerType2 {
+                    font-size: 30px !important;
+                    font-family: 'DB Adman X';
+                    width: 30vw;
+                    margin-top: 30px;
+                    line-height: 0.9;
+                    @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                        width: 30vw;
+                        // width: 90%;
+                        // font-size: 30px !important;
+                    }
+                }
                 .red {
                     color: red;
                 }
@@ -50,17 +90,30 @@
         }
         .image-slide-right {
             width: 9.17vw;
-            .text-right {
+            position: relative;
+            .backChangeColor {
+                width: 0%;
+                height: 0%;
                 position: absolute;
-                transform: rotate(-90deg);
+                background: #E91E56;
+                transition: width 0.2s linear;
+                right: 0;
+                // z-index: 9999;
+            }
+            .text-right-out {
                 top: 69%;
-                z-index: 10;
-                font-size: 120px;
-                color: transparent;
-                margin-left: 6.5vw;
-                width: 60px;
-                -webkit-text-stroke-width: 1px;
-                -webkit-text-stroke-color: white;
+                position: relative;
+                .text-right {
+                    position: absolute;
+                    transform: rotate(-90deg);
+                    z-index: 10;
+                    font-size: 120px;
+                    color: transparent;
+                    margin-left: 6.5vw;
+                    width: 60px;
+                    -webkit-text-stroke-width: 1px;
+                    -webkit-text-stroke-color: white;
+                }
             }
             img {
                 width: 100%;
@@ -69,14 +122,6 @@
                 object-fit: cover;
             }
         }
-    }
-    .backChangeColor {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background: #E91E56;
-        opacity: 50%;
-        // z-index: 9999;
     }
     .pg-nav {
         position: absolute;
@@ -103,11 +148,12 @@
         }
         .content {
             position: absolute;
-            top: 55%;
+            top: 30%;
             font-size: 18px;
             color: white;
             z-index: 100;
             right: 4vw;
+            padding: 20px;
         }
     }
     // .slick-arrow.slick-next {
@@ -115,29 +161,31 @@
     //     right: 7vw;
     //     top: 95vh;
     // }
-    .slick-arrow.slick-prev {
-        // background: black;
-        left: 88vw;
-        top: 95vh;
-        z-index: 100;
-    }
     .slick-arrow.slick-next::before {
         font-family: fantasy;
-        font-size: 25px;
+        font-size: 30px;
         line-height: 1;
         opacity: 1;
         color: white;
         position: absolute;
-        bottom: 3.5vh;
+        bottom: 3.2vh;
         left: 20px;
+        @media only screen and (min-width: 768px) and (max-width: 1900px) {
+            bottom: 2.7vh;
+        }
+        @media only screen and (max-width: 768px) {
+            left: -12px;
+        }
     }
     .slick-arrow.slick-prev::before {
         font-family: fantasy;
-        font-size: 25px;
+        font-size: 30px;
         line-height: 1;
         opacity: 1;
         color: white;
-        bottom: 10px;
+        bottom: 32px;
+        right: 6px;
+        position: absolute;
     }
     .custom-arrow {
         height: 100vh;
@@ -145,6 +193,22 @@
         top: 0;
         transform: translate(0, 0);
         right: 0;
+    }
+    .custom-arrow-prevArrow {
+        height: 100px;
+        width: 100px;
+        left: 85vw;
+        top: 95vh;
+        z-index: 100;
+        @media only screen and (min-width: 1100px) and (max-width: 1600px) {
+            left: 82vw;
+        }
+        @media only screen and (min-width: 768px) and (max-width: 1100px) {
+            left: 80vw;
+        }
+        @media only screen and (max-width: 768px) {
+            display: none;
+        }
     }
     .hamburger-inner.hamburger-inner:after {
         background-color: #E91E56 !important;
@@ -186,16 +250,31 @@
                 font-size: 159px;
             }
             .menu-link {
-                opacity: 0.5;
-                transition: height 1s;
-                transition: all 0.5s linear;
-            }
-            .menu-link:hover {
                 opacity: 1;
+                transition: color 0.5s linear;
+                color: #979DAF;
+                overflow: hidden;
+                a {
+                    position: relative;
+                    display: inline-block;
+                    color: #979DAF;
+                    overflow: hidden;
+                    background: linear-gradient(to top, white, white 50%, #979DAF 50%);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-size: 100% 200%;
+                    transition: background-position 500ms ease;
+                    text-decoration: none; // text decorations are clipped in WebKit browsers
+                    &:hover {
+                        background-position: 0 100%;
+                    }
+                }
             }
         }
         .bv-menu-menu {
             height: 20vh;
+            overflow: hidden;
         }
         .menu-buttom {
             position: absolute;
@@ -250,4 +329,104 @@
 
 .about-link:hover {
     color: white;
+}
+
+.animate__animated.animate__delay-100ms {
+    -webkit-animation-delay: 100ms !important;
+    animation-delay: 100ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-200ms {
+    -webkit-animation-delay: 200ms !important;
+    animation-delay: 200ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-300ms {
+    -webkit-animation-delay: 300ms !important;
+    animation-delay: 300ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-400ms {
+    -webkit-animation-delay: 400ms !important;
+    animation-delay: 400ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-500ms {
+    -webkit-animation-delay: 500ms !important;
+    animation-delay: 500ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-600ms {
+    -webkit-animation-delay: 600ms !important;
+    animation-delay: 600ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-700ms {
+    -webkit-animation-delay: 700ms !important;
+    animation-delay: 700ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-800ms {
+    -webkit-animation-delay: 800ms !important;
+    animation-delay: 800ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-900ms {
+    -webkit-animation-delay: 900ms !important;
+    animation-delay: 900ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-1200ms {
+    -webkit-animation-delay: 1200ms !important;
+    animation-delay: 1200ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-1300ms {
+    -webkit-animation-delay: 1300ms !important;
+    animation-delay: 1300ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-1500ms {
+    -webkit-animation-delay: 1500ms !important;
+    animation-delay: 1500ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__animated.animate__delay-1800ms {
+    -webkit-animation-delay: 1800ms !important;
+    animation-delay: 1800ms !important;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
 }

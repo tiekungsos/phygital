@@ -1,9 +1,22 @@
 <template>
-  <div>
+  <div :style="{'cursor' :`url(${cursorDotUrl}) 25 15 ,auto`}">
     <Nuxt />
   </div>
 </template>
 
+
+<script>
+import cursorDotUrl from '~/assets/image/icon/dot.png'
+
+export default {
+  data () {
+    return {
+      cursorDotUrl
+    }
+  },
+  
+}
+</script>
 <style>
 
 @font-face {
@@ -29,6 +42,15 @@
     src: local("font"),
      url(~assets/font/Prompt-Light.woff) format("woff");
 }
+
+@font-face {
+    font-family: "Prompt-MediumItalic";
+    src: local("font"),
+     url(~assets/font/Prompt-MediumItalic.woff) format("woff");
+}
+
+
+
 
 html {
   font-family:

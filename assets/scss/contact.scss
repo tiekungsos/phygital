@@ -1,0 +1,91 @@
+.contact {
+    width: 100vw;
+    height: 100%;
+    background-color: #1C2C58;
+    .contact-content {
+        color: white;
+        padding-top: 8%;
+        .contact-content-in {
+            padding-left: 10.625vw;
+            padding-right: 10.625vw;
+            .business {
+                padding-bottom: 20px;
+                font-family: 'Prompt-light';
+                font-size: 24px;
+                text-transform: uppercase;
+                border-bottom: 1px solid #D83959;
+            }
+            .name {
+                height: 230px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                line-height: 1.5;
+                .name-in {
+                    font-family: 'Prompt-light';
+                    font-size: 24px;
+                    text-transform: uppercase;
+                }
+                .tel-in {
+                    font-family: 'DB Adman X';
+                    font-size: 48px;
+                }
+                .email-in {
+                    font-family: 'AXIS';
+                    font-size: 48px;
+                }
+            }
+            .media {
+                border-bottom: 1px solid #D83959;
+                padding-bottom: 15px;
+                font-family: 'Prompt-light';
+                text-transform: uppercase;
+                font-size: 24px;
+            }
+            .account {
+                padding-top: 20px;
+                font-family: 'Prompt-light';
+                text-transform: uppercase;
+                font-size: 24px;
+            }
+            .account-email {
+                font-family: 'AXIS';
+                font-size: 48px;
+            }
+            .map {
+                padding-top: 2%;
+                .map-show {
+                    width: 100%;
+                    height: 300px;
+                }
+            }
+        }
+        .leave-contact {
+            color: white;
+            padding-top: 10px;
+            .menu-buttom {
+                position: relative;
+                left: 50%;
+                margin: 0;
+                transform: translate(-50%, 0%);
+                width: 90%;
+                font-size: 13.5px;
+                .left-contact {
+                    padding-left: 10.625vw;
+                    p {
+                        border-bottom: 2px solid #ffffff;
+                        padding-bottom: 0px;
+                        width: fit-content;
+                    }
+                }
+                .social-menu {
+                    .text {
+                        padding-left: 0;
+                        padding-right: 0;
+                        width: 126px;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -8,55 +8,76 @@
       :arrows="true"
       :lazyLoad="'ondemand'"
       :dotsClass="'slick-dots custom-dot-class'"
-      :edgeFriction="0.35" 
+      :edgeFriction="1" 
       :infinite="true"
       :slidesToShow="1"
       :slidesToScroll="1"
-      :speed="500"
+      :speed="1000"
+      @beforeChange="hidebar()"
     >
     
     <div v-for="(imageSlideData, index) in imageSlide" v-bind:key="index">
-      <div class="image-slide-main">
-        <div class="image-slide">
+      <div class="image-slide-main" :style="{'cursor' :`url(${cursorDotUrl}),auto`}">
+        <div class="image-slide" >
           
           <div class="content-left">
-            <h1 class="animate__animated animate__fadeInUp animate__delay-0.5s">
+            <div class="content-left-line1">
+               <h1 class="animate__animated animate__slideInUp animate__delay-200ms">
               {{imageSlideData.content.line1}}
             </h1>
+            </div>
+           
             <div class="revert-prant">
-              <div class="revert animate__animated animate__slideInLeft animate__delay-1s">
-                <h2 class="animate__animated animate__fadeInUp animate__delay-2s">{{imageSlideData.content.line2}}</h2>
+              <div class="revert animate__animated animate__slideInLeft animate__delay-500ms">
+                <h2 class="animate__animated animate__slideInUp animate__delay-1300ms">{{imageSlideData.content.line2}}</h2>
               </div>
             </div>
-            
-            <h2 class="contentLineLast animate__animated animate__fadeInUp animate__delay-3s" v-bind:style="imageSlideData.content.line3.style">
-  
-              <span v-for="(textContent, index) in imageSlideData.content.line3.text" v-bind:key="index">
-                {{textContent}}  
-                <span class="red" style="color: red !important;">
-                  {{checkNumber(imageSlideData.content.line3.text, index)}}
+            <div class="contentLineLast">
+              <h2 v-bind:class="['contentLineLast-in', 'animate__animated','animate__slideInUp','animate__delay-1800ms',imageSlideData.content.line3.class]">
+                <span v-for="(textContent, index) in imageSlideData.content.line3.text" v-bind:key="index">
+                  {{textContent}}  
+                  <span class="red" style="color: red !important;">
+                    {{checkNumber(imageSlideData.content.line3.text, index)}}
+                  </span>
                 </span>
-              </span>
-            </h2>
+              </h2>
+            </div>
+            
           </div>
           <img :src="`${imageSlideData.image}`" alt="First slide">
         </div>
         
-        <div class="image-slide-right" >
-          <div class="text-right" :style="{'color':colorText,'cursor' :`url(${cursorUrl}),auto`}">
-            {{addNextText(index)}}
+        <div class="image-slide-right">
+             <div class="backChangeColor" 
+          :style="[
+                    imageSlide[index].active ? {'width': '100%','height' :'100%'} : {'width': '0%','height' :'0%'},
+                    {'cursor': `url(${cursorUrl}),auto`},
+                    imageSlide[index].active === 2 ? {'right': '100%'} : {'right': '0'},
+                    {'opacity': '50%'}
+          ]"
+          ></div>
+          <div class="text-right-out animate__animated animate__slideInRight animate__delay-2s">
+            <div class="text-right " :style="{'color':colorText,'cursor' :`url(${cursorUrl}),auto`}" >
+              {{addNextText(index)}}
+            </div>
           </div>
+          
           <img :src="`${addNextImage(index)}`" alt="Second slide">
         </div>
       </div>
     </div>     
 
-    <template #nextArrow>
-      <div class="custom-arrow" :style="{'cursor' :`url(${cursorUrl}),auto`}" @mouseover="mouseOver(index)"  @mouseleave="mouseOut(index)">
-        <transition name="slide-right">
-          <div class="backChangeColor" :style="{'cursor' :`url(${cursorUrl}),auto`}" v-if="active"></div>
-        </transition>
-      </div>
+
+    <template #prevArrow >
+      <div class="custom-arrow-prevArrow animate__animated animate__fadeIn animate__delay-2s animate__delay-2s" :style="{'cursor' :`url(${cursorDotUrl}),auto`}"></div>
+    </template>
+
+    <template #nextArrow="arrowOption"  >
+      <div class="custom-arrow animate__animated animate__fadeIn animate__delay-2s" 
+      :style="{'cursor' :`url(${cursorUrl}),auto`}" 
+      @mouseover="mouseOver(arrowOption.currentSlide)"  
+      @mouseleave="mouseOut(arrowOption.currentSlide)"
+      ></div>
     </template>
 
     </VueSlickCarousel>
@@ -69,6 +90,7 @@ import backgroundImagePath2 from '~/assets/image/slide/image2.jpg'
 import backgroundImagePath3 from '~/assets/image/slide/image3.jpg'
 import backgroundImagePath4 from '~/assets/image/slide/image4.jpg'
 import cursorUrl from '~/assets/image/icon/right.png'
+import cursorDotUrl from '~/assets/image/icon/dot.png'
 
  import VueSlickCarousel from 'vue-slick-carousel'
   import 'vue-slick-carousel/dist/vue-slick-carousel.css'
@@ -98,7 +120,9 @@ export default {
                 'text' : ['Physical & digital product'],
                 'style' : {
                   'font-size': '72px !important',
-                }
+                  'margin-top': '40px',
+                },
+                'class' : 'bannerType1'
               }
             },
             'active' : false
@@ -121,9 +145,10 @@ export default {
                   'font-size': '30px !important',
                   'font-family': 'DB Adman X',
                   'width': '30vw',
-                  'margin-top': '40px',
+                  'margin-top': '30px',
                   'line-height': '0.9'
-                }
+                },
+                'class' : 'bannerType2'
               }
             },
             'active' : false
@@ -146,9 +171,10 @@ export default {
                   'font-size': '30px !important',
                   'font-family': 'DB Adman X',
                   'width': '30vw',
-                  'margin-top': '40px',
+                  'margin-top': '30px',
                   'line-height': '0.9'
-                }
+                },
+                'class' : 'bannerType2'
               }
             },
             'active' : false
@@ -170,6 +196,7 @@ export default {
         sliding: null,
         colorText:'transparent',
         cursorUrl,
+        cursorDotUrl,
         isActive : false,
         elmentDelay : [],
         menuActiveParent : false,
@@ -179,7 +206,8 @@ export default {
           about : false,
           growup : false,
           menuButtom : false
-        }
+        },
+        indexPage : null
       }
     },
     components: { VueSlickCarousel,VueAos,VBurger },
@@ -215,13 +243,20 @@ export default {
         mouseOver: function(index){
             this.active = true
             this.colorText = 'white' 
+            this.imageSlide[index].active = true
+
+            this.indexPage = index
+            // index
         },
         mouseOut:function(index){
-
           this.active = false
-     
+          this.imageSlide[index].active = false
           this.colorText = 'transparent'
         },
+        hidebar:function() {
+          var index = this.indexPage
+          this.imageSlide[index].active = 2
+        }
 
     }
   }
@@ -231,21 +266,21 @@ export default {
 <style >
 
   /* during entering and leaving : */
-  .page-enter-active, .page-leave-active {
+  /* .page-enter-active, .page-leave-active {
     position:absolute;
-    max-width:100vw; /*make sur our content keep it's original width*/
+    max-width:100vw;
     transition: all 1s ease;
-  }
+  } */
 
   /* entering start */  
-  .page-enter {
+  /* .page-enter {
     bottom: -100%;
-  }
+  } */
 
   /* entering end */
-  .page-enter-to {
+  /* .page-enter-to {
     bottom: 0;
-  }
+  } */
 
 
   /* Enter and leave animations can use different */

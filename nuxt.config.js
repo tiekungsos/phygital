@@ -21,7 +21,8 @@ export default {
     // Global CSS (https://go.nuxtjs.dev/config-css)
     css: [
         '~/assets/scss/custom.scss',
-        '~/assets/scss/agency.scss'
+        '~/assets/scss/agency.scss',
+        '~/assets/scss/contact.scss'
     ],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -39,6 +40,11 @@ export default {
         'bootstrap-vue/nuxt',
         '@nuxtjs/style-resources',
     ],
+
+    bootstrapVue: {
+        // Add the icon plugin to the `componentsPlugins` array
+        icons: true
+    },
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {},

@@ -1,29 +1,34 @@
 <template  >
-    <div class="agency" v-scroll:throttle="{fn: onScroll}">
+    <div class="agency" ref="infoBox">
         <Menu/>
         <div class="header-blog">
 
         </div>
         <div class="right-scroll">
-            <div class="active" :style="{'height':position + '%'}">
+             <div class="right-scroll-in animate__animated animate__slideInDown animate__delay-1s">
+                <div class="active animate__animated animate__slideInDown animate__delay-1500ms" :style="{'height':position + '%'}">
+                </div>
             </div>
         </div>
+       
         <div class="blog" ref="infoBox">
-
             <div class="header" >
                 <div class="header-text">
-                PHYGITAL <span class="text-after">AGENCY</span> 
+                    <div class="text-before animate__animated animate__fadeInUp">PHYGITAL</div> 
+                    <div class="text-after animate__animated animate__fadeInUp animate__delay-200ms">AGENCY</div> 
                 </div>
-                <div class="header-content">
-                    เป็นดิจิทัล เอเจนซี ที่รับทำการตลาดเชิงดิจิทัล เพื่อสนองต่อลูกค้า
-                    ที่ต้องการทำสื่อโฆษณาทางออนไลน์ และออฟไลน์
+                <div class="header-content ">
+                    <div class="header-content-in animate__animated animate__fadeInUp animate__delay-300ms">
+                        เป็นดิจิทัล เอเจนซี ที่รับทำการตลาดเชิงดิจิทัล เพื่อสนองต่อลูกค้า
+                        ที่ต้องการทำสื่อโฆษณาทางออนไลน์ และออฟไลน์
+                    </div>
                 </div>
                 <div class="line">
-                    <div class="line-in">
+                    <div class="line-in animate__animated animate__slideInDown animate__delay-800ms">
                         
                     </div>
                 </div>
-                <div class="header-buttom">
+                <div class="header-buttom animate__animated animate__fadeInDown animate__delay-800ms">
                     โดยชื่อบริษัทมาจากคำว่า <span>PHYGITAL</span> ซึ่งมาจากคำว่า  <br>
                     <span>Physical</span> (การตลาดแบบมีหน้าร้าน) บวกกับคำว่า <span>Digital</span> (การตลาดออนไลน์) <br>
                     <span>PHYGITAL</span> จึงเป็นการผสมผสานการตลาดระหว่างโลกแห่งความเป็นจริง  <br>
@@ -31,30 +36,73 @@
                 </div>
             </div>
             <div class="team">
-                OUR TEAM
+                
+                <div class="team-text animate__animated animate__fadeInUp  animate__delay-1800ms">OUR TEAM</div>
+                <div class="team-line animate__animated animate__slideInLeft  animate__delay-1800ms"></div>
             </div>
             <div class="theme">
                 <b-container class="bv-example-row">
-                    <b-row>
-                        <b-col class="person-img" cols="4">
-                            <img src="~/assets/image/person/18710.png" alt="person 1">
-                        </b-col>
-                        <b-col class="person-img" cols="4">
-                            <img src="~/assets/image/person/20779.png" alt="person 2">
-                        </b-col>
-                        <b-col class="person-img" cols="4">
-                            <img src="~/assets/image/person/263756-P4T3RU-156.png" alt="person 3">
-                        </b-col>
-                            <b-col class="person-img" cols="4">
-                            <img src="~/assets/image/person/10495.png" alt="person 4">
-                        </b-col>
-                            <b-col class="person-img" cols="4">
-                            <img src="~/assets/image/person/9296.png" alt="person 5">
-                        </b-col>
-                            <b-col class="person-img" cols="4">
-                            <img src="~/assets/image/person/23488.png" alt="person 6">
-                        </b-col>
+                    <b-row ref="row">
+                        <b-col class="person-img" 
+                            v-for="(person, index) in persons" 
+                            v-bind:key="index" 
+                            :style="{'cursor':`url(${persons[index].cursor}),auto`}" 
+                            :cols="`${persons[index].col}`"
+                            :ref="`${index}`">
 
+                            <div class="person-img-in"  v-on:click="sideLeaveShow($event,index)" @mouseover="hoverImage(index)" @mouseleave="leaveImage(index)" >
+                                <div class="cover" :style="{'width' :`${persons[index].style.width}%`,'height' :`${persons[index].style.height}%`}">
+                                </div>
+                                <img :src="`${person.images}`" alt="person" 
+                                    :style="{'left' :`${persons[index].imgStyle.left}px`,'z-index' :`${persons[index].imgStyle.zindex}`}"
+                                >
+
+                                <!-- transition: visibility 0s, opacity 0s linear; -->
+                                <div class="mini-info" :style="[persons[index].hover ? {'opacity': '1'} : {'opacity': '0'}]">
+                                     <div class="person-name">
+                                        {{person.name}}
+                                    </div>
+                                    <div class="person-about">
+                                        {{person.desc}}
+                                    </div>
+                                </div>
+                               
+
+                            </div>
+                            <div class="information" 
+                            v-on:click="sideLeaveShow($event,index)"
+                            :style="{'left' :`${persons[index].infoStyle.left}px`,'width' :`${persons[index].infoStyle.width}vw`,'height' :`${persons[index].infoStyle.height}%`}"
+                            v-if="persons[index].infoshow">
+                                <!-- {{person.desc}} -->
+                                <b-row style="height:100%">
+                                    <b-col cols="4"></b-col>
+                                    <b-col cols="8">
+                                        <div class="bg-peson" :style="{'width' :`${persons[index].infoStyle.widthBox}%`}">
+                                            
+
+                                            <b-row style="height:100%" >
+                                                <b-col cols="6">
+                                                    <div class="mini-info" :style="[persons[index].detailShow ? {'opacity': '1'} : {'opacity': '0'}]">
+                                                        <div class="person-name">
+                                                            {{person.name}}
+                                                        </div>
+                                                        <div class="person-about">
+                                                            {{person.desc}}
+                                                        </div>
+                                                    </div>
+                                                </b-col>
+                                                <b-col cols="6">
+                                                    <div class="long-desc" :style="[persons[index].detailShow ? {'opacity': '1'} : {'opacity': '0'}]">
+                                                        {{person.longdesc}}
+                                                    </div>
+                                                </b-col>
+                                            </b-row>
+                                               
+                                        </div>
+                                    </b-col>
+                                </b-row>
+                            </div>
+                        </b-col>
                     </b-row>
                 </b-container>
             </div>
@@ -110,6 +158,16 @@
 import Vue from 'vue'
 import VueScrollSnap from "vue-scroll-snap";
 import vuescroll from 'vue-scroll'
+import cursorUrl from '~/assets/image/icon/right.png'
+import 'animate.css';
+
+import person1 from '~/assets/image/person/18710.png'
+import person2 from '~/assets/image/person/20779.png'
+import person3 from '~/assets/image/person/263756-P4T3RU-156.png'
+import person4 from '~/assets/image/person/10495.png'
+import person5 from '~/assets/image/person/9296.png'
+import person6 from '~/assets/image/person/23488.png'
+
 
 
 //clients
@@ -160,6 +218,7 @@ export default {
     data() {
         return {
           position: 30,
+          cursorUrl,
           clients : [
               {
                 'image' : clients1,
@@ -288,34 +347,180 @@ export default {
                 'imageActive' : ''
               },
               
-          ]
+          ],
+          persons : [
+              {
+                  'images' : person1,
+                  'name' : 'Anna Hoppins',
+                  'desc' : 'Executive Partner, Managing Director, Phygital Consulting',
+                  'longdesc' : 'เซอร์สปาแชมพู เฮียแบล็คจิ๊กภควัทคีตาเกย์ ความหมายไดเอ็ตบลอนด์ซีเรียส เมจิกรามาธิบดีซีนีเพล็กซ์สแควร์ ฮาราคีรีป่าไม้แทคติคไฮแจ็ค สเตอริโอต่อยอดแฟ็กซ์ เทรนด์ช็อป ไงครัวซอง โหงวเฮ้ง ไวอากร้าราสเบอร์รีภควัมบดี สหัสวรรษปัจฉิมนิเทศแฟรี แม็กกาซีน เนิร์สเซอรี โซลาร์รีสอร์ท จุ๊ยโทรไฮแจ็คสโตนแอ็คชั่น จ๊อกกี้แอ๊บแบ๊วโบตั๋นฟอยล์ ฮัลโหลเมจิคอุปสงค์วาริชศาสตร์ความหมาย ภควัมบดี ดีพาร์ทเมนต์เรซินฮ็อตอินดอร์ หลวงปู่ เต๊ะตัวตนแกรนด์สังโฆไบโอ ฟอยล์อาว์บริกรม็อบคอนเซ็ปต์ เตี๊ยม ก๊วน บลูเบอร์รีไมเกรนแอดมิสชัน ชนะเลิศหลวงปู่ โดนัท อิสรชนโอ้ย แป๋วอุปสงค์กับดัก จีดีพีฟลุคซัมเมอร์รีโมตนางแบบ พรีเมียมพาร์ตเนอร์พงษ์ ไฮเวย์ตุ๋ยหลวงพี่เตี๊ยม หลินจือ ปิกอัพแฟรนไชส์เกรด ฮ็อตเทคโนแครตแพนด้าเบญจมบพิตรโปรเจกต์ ดั๊มพ์หยวนดอกเตอร์ โบรชัวร์แอปเปิ้ลสแควร์อีโรติกคอนโด สโรชารีวิวผู้นำไฮเวย์ บริกรล้มเหลว แผดเผาพุดดิ้งขั้นตอน ว้อยวอลนัทออดิทอเรียมยิวโปสเตอร์ บอร์ดสะบึมส์ฮอตดอกล็อบบี้ รีโมตวอล์ก นางแบบแพ็คโคโยตี้ลิสต์ สต๊อกลาตินคลับ ชัวร์จตุคามโทรโข่งวิดีโอดาวน์ แซนด์วิชฟาสต์ฟู้ด โฮปพฤหัสแกสโซฮอล์แอสเตอร์แชเชือนน็อคเทรนด์อวอร์ด ไง คีตปฏิภาณผลักดันเบนโลชีส เบญจมบพิตรทำงาน ชะโนดสปอร์ต ตุ๊ดวอล์กดีพาร์ตเมนท์ เฮียแดนเซอร์พูลคอร์ส เซอร์วิสแจ็กพอต รีเสิร์ช ไมเกรน เก๊ะ เบนโตะครูเสด โอยัวะรันเวย์ธัมโม แอสเตอร์สถาปัตย์ แรงผลักเกจิวันเวย์ด็อกเตอร์เซลส์แมน ดยุค',
+                  'hover' : false,
+                  'style' : {
+                       width: 0,
+                       height: 0
+                  },
+                  'col' : 4,
+                  'infoshow' : false,
+                  'infoStyle' :  {
+                    'left': 0,
+                    'width': 0,
+                    'height': 0,
+                    'widthBox' : 0
+                  },
+                  'cursor' : cursorUrl,
+                  'imgStyle' : {
+                      'zindex' : 0,
+                      'left': 0
+                  },
+                  'detailShow' : false
+              },
+              {
+                  'images' : person2,
+                  'name' : 'Anna Hoppins',
+                  'desc' : 'Executive Partner, Managing Director, Phygital Consulting',
+                  'longdesc' : 'เซอร์สปาแชมพู เฮียแบล็คจิ๊กภควัทคีตาเกย์ ความหมายไดเอ็ตบลอนด์ซีเรียส เมจิกรามาธิบดีซีนีเพล็กซ์สแควร์ ฮาราคีรีป่าไม้แทคติคไฮแจ็ค สเตอริโอต่อยอดแฟ็กซ์ เทรนด์ช็อป ไงครัวซอง โหงวเฮ้ง ไวอากร้าราสเบอร์รีภควัมบดี สหัสวรรษปัจฉิมนิเทศแฟรี แม็กกาซีน เนิร์สเซอรี โซลาร์รีสอร์ท จุ๊ยโทรไฮแจ็คสโตนแอ็คชั่น จ๊อกกี้แอ๊บแบ๊วโบตั๋นฟอยล์ ฮัลโหลเมจิคอุปสงค์วาริชศาสตร์ความหมาย ภควัมบดี ดีพาร์ทเมนต์เรซินฮ็อตอินดอร์ หลวงปู่ เต๊ะตัวตนแกรนด์สังโฆไบโอ ฟอยล์อาว์บริกรม็อบคอนเซ็ปต์ เตี๊ยม ก๊วน บลูเบอร์รีไมเกรนแอดมิสชัน ชนะเลิศหลวงปู่ โดนัท อิสรชนโอ้ย แป๋วอุปสงค์กับดัก จีดีพีฟลุคซัมเมอร์รีโมตนางแบบ พรีเมียมพาร์ตเนอร์พงษ์ ไฮเวย์ตุ๋ยหลวงพี่เตี๊ยม หลินจือ ปิกอัพแฟรนไชส์เกรด ฮ็อตเทคโนแครตแพนด้าเบญจมบพิตรโปรเจกต์ ดั๊มพ์หยวนดอกเตอร์ โบรชัวร์แอปเปิ้ลสแควร์อีโรติกคอนโด สโรชารีวิวผู้นำไฮเวย์ บริกรล้มเหลว แผดเผาพุดดิ้งขั้นตอน ว้อยวอลนัทออดิทอเรียมยิวโปสเตอร์ บอร์ดสะบึมส์ฮอตดอกล็อบบี้ รีโมตวอล์ก นางแบบแพ็คโคโยตี้ลิสต์ สต๊อกลาตินคลับ ชัวร์จตุคามโทรโข่งวิดีโอดาวน์ แซนด์วิชฟาสต์ฟู้ด โฮปพฤหัสแกสโซฮอล์แอสเตอร์แชเชือนน็อคเทรนด์อวอร์ด ไง คีตปฏิภาณผลักดันเบนโลชีส เบญจมบพิตรทำงาน ชะโนดสปอร์ต ตุ๊ดวอล์กดีพาร์ตเมนท์ เฮียแดนเซอร์พูลคอร์ส เซอร์วิสแจ็กพอต รีเสิร์ช ไมเกรน เก๊ะ เบนโตะครูเสด โอยัวะรันเวย์ธัมโม แอสเตอร์สถาปัตย์ แรงผลักเกจิวันเวย์ด็อกเตอร์เซลส์แมน ดยุค',
+                  'hover' : false,
+                  'style' : {
+                       width: 0,
+                       height: 0
+                  },
+                  'col' : 4,
+                  'infoshow' : false,
+                  'infoStyle' :  {
+                    'left': 0,
+                    'width': 0,
+                    'height': 0,
+                    'widthBox' : 0
+                  },
+                  'cursor' : cursorUrl,
+                  'imgStyle' : {
+                      'zindex' : 0,
+                      'left': 0
+                  },
+                  'detailShow' : false
+                  
+              },
+              {
+                  'images' : person3,
+                  'name' : 'Anna Hoppins',
+                  'desc' : 'Executive Partner, Managing Director, Phygital Consulting',
+                  'longdesc' : 'เซอร์สปาแชมพู เฮียแบล็คจิ๊กภควัทคีตาเกย์ ความหมายไดเอ็ตบลอนด์ซีเรียส เมจิกรามาธิบดีซีนีเพล็กซ์สแควร์ ฮาราคีรีป่าไม้แทคติคไฮแจ็ค สเตอริโอต่อยอดแฟ็กซ์ เทรนด์ช็อป ไงครัวซอง โหงวเฮ้ง ไวอากร้าราสเบอร์รีภควัมบดี สหัสวรรษปัจฉิมนิเทศแฟรี แม็กกาซีน เนิร์สเซอรี โซลาร์รีสอร์ท จุ๊ยโทรไฮแจ็คสโตนแอ็คชั่น จ๊อกกี้แอ๊บแบ๊วโบตั๋นฟอยล์ ฮัลโหลเมจิคอุปสงค์วาริชศาสตร์ความหมาย ภควัมบดี ดีพาร์ทเมนต์เรซินฮ็อตอินดอร์ หลวงปู่ เต๊ะตัวตนแกรนด์สังโฆไบโอ ฟอยล์อาว์บริกรม็อบคอนเซ็ปต์ เตี๊ยม ก๊วน บลูเบอร์รีไมเกรนแอดมิสชัน ชนะเลิศหลวงปู่ โดนัท อิสรชนโอ้ย แป๋วอุปสงค์กับดัก จีดีพีฟลุคซัมเมอร์รีโมตนางแบบ พรีเมียมพาร์ตเนอร์พงษ์ ไฮเวย์ตุ๋ยหลวงพี่เตี๊ยม หลินจือ ปิกอัพแฟรนไชส์เกรด ฮ็อตเทคโนแครตแพนด้าเบญจมบพิตรโปรเจกต์ ดั๊มพ์หยวนดอกเตอร์ โบรชัวร์แอปเปิ้ลสแควร์อีโรติกคอนโด สโรชารีวิวผู้นำไฮเวย์ บริกรล้มเหลว แผดเผาพุดดิ้งขั้นตอน ว้อยวอลนัทออดิทอเรียมยิวโปสเตอร์ บอร์ดสะบึมส์ฮอตดอกล็อบบี้ รีโมตวอล์ก นางแบบแพ็คโคโยตี้ลิสต์ สต๊อกลาตินคลับ ชัวร์จตุคามโทรโข่งวิดีโอดาวน์ แซนด์วิชฟาสต์ฟู้ด โฮปพฤหัสแกสโซฮอล์แอสเตอร์แชเชือนน็อคเทรนด์อวอร์ด ไง คีตปฏิภาณผลักดันเบนโลชีส เบญจมบพิตรทำงาน ชะโนดสปอร์ต ตุ๊ดวอล์กดีพาร์ตเมนท์ เฮียแดนเซอร์พูลคอร์ส เซอร์วิสแจ็กพอต รีเสิร์ช ไมเกรน เก๊ะ เบนโตะครูเสด โอยัวะรันเวย์ธัมโม แอสเตอร์สถาปัตย์ แรงผลักเกจิวันเวย์ด็อกเตอร์เซลส์แมน ดยุค',
+                  'hover' : false,
+                  'style' : {
+                       width: 0,
+                       height: 0
+                  },
+                  'col' : 4,
+                  'infoshow' : false,
+                  'infoStyle' :  {
+                    'left': 0,
+                    'width': 0,
+                    'height': 0,
+                    'widthBox' : 0
+                  },
+                  'cursor' : cursorUrl,
+                  'imgStyle' : {
+                      'zindex' : 0,
+                      'left': 0
+                  },
+                  'detailShow' : false
+              },
+              {
+                  'images' : person4,
+                  'name' : 'Anna Hoppins',
+                  'desc' : 'Executive Partner, Managing Director, Phygital Consulting',
+                  'longdesc' : 'เซอร์สปาแชมพู เฮียแบล็คจิ๊กภควัทคีตาเกย์ ความหมายไดเอ็ตบลอนด์ซีเรียส เมจิกรามาธิบดีซีนีเพล็กซ์สแควร์ ฮาราคีรีป่าไม้แทคติคไฮแจ็ค สเตอริโอต่อยอดแฟ็กซ์ เทรนด์ช็อป ไงครัวซอง โหงวเฮ้ง ไวอากร้าราสเบอร์รีภควัมบดี สหัสวรรษปัจฉิมนิเทศแฟรี แม็กกาซีน เนิร์สเซอรี โซลาร์รีสอร์ท จุ๊ยโทรไฮแจ็คสโตนแอ็คชั่น จ๊อกกี้แอ๊บแบ๊วโบตั๋นฟอยล์ ฮัลโหลเมจิคอุปสงค์วาริชศาสตร์ความหมาย ภควัมบดี ดีพาร์ทเมนต์เรซินฮ็อตอินดอร์ หลวงปู่ เต๊ะตัวตนแกรนด์สังโฆไบโอ ฟอยล์อาว์บริกรม็อบคอนเซ็ปต์ เตี๊ยม ก๊วน บลูเบอร์รีไมเกรนแอดมิสชัน ชนะเลิศหลวงปู่ โดนัท อิสรชนโอ้ย แป๋วอุปสงค์กับดัก จีดีพีฟลุคซัมเมอร์รีโมตนางแบบ พรีเมียมพาร์ตเนอร์พงษ์ ไฮเวย์ตุ๋ยหลวงพี่เตี๊ยม หลินจือ ปิกอัพแฟรนไชส์เกรด ฮ็อตเทคโนแครตแพนด้าเบญจมบพิตรโปรเจกต์ ดั๊มพ์หยวนดอกเตอร์ โบรชัวร์แอปเปิ้ลสแควร์อีโรติกคอนโด สโรชารีวิวผู้นำไฮเวย์ บริกรล้มเหลว แผดเผาพุดดิ้งขั้นตอน ว้อยวอลนัทออดิทอเรียมยิวโปสเตอร์ บอร์ดสะบึมส์ฮอตดอกล็อบบี้ รีโมตวอล์ก นางแบบแพ็คโคโยตี้ลิสต์ สต๊อกลาตินคลับ ชัวร์จตุคามโทรโข่งวิดีโอดาวน์ แซนด์วิชฟาสต์ฟู้ด โฮปพฤหัสแกสโซฮอล์แอสเตอร์แชเชือนน็อคเทรนด์อวอร์ด ไง คีตปฏิภาณผลักดันเบนโลชีส เบญจมบพิตรทำงาน ชะโนดสปอร์ต ตุ๊ดวอล์กดีพาร์ตเมนท์ เฮียแดนเซอร์พูลคอร์ส เซอร์วิสแจ็กพอต รีเสิร์ช ไมเกรน เก๊ะ เบนโตะครูเสด โอยัวะรันเวย์ธัมโม แอสเตอร์สถาปัตย์ แรงผลักเกจิวันเวย์ด็อกเตอร์เซลส์แมน ดยุค',
+                  'hover' : false,
+                  'style' : {
+                       width: 0,
+                       height: 0
+                  },
+                  'col' : 4,
+                  'infoshow' : false,
+                  'infoStyle' :  {
+                    'left': 0,
+                    'width': 0,
+                    'height': 0,
+                    'widthBox' : 0
+                  },
+                  'cursor' : cursorUrl,
+                  'imgStyle' : {
+                      'zindex' : 0,
+                      'left': 0
+                  },
+                  'detailShow' : false
+              },
+              {
+                  'images' : person5,
+                  'name' : 'Anna Hoppins',
+                  'desc' : 'Executive Partner, Managing Director, Phygital Consulting',
+                  'longdesc' : 'เซอร์สปาแชมพู เฮียแบล็คจิ๊กภควัทคีตาเกย์ ความหมายไดเอ็ตบลอนด์ซีเรียส เมจิกรามาธิบดีซีนีเพล็กซ์สแควร์ ฮาราคีรีป่าไม้แทคติคไฮแจ็ค สเตอริโอต่อยอดแฟ็กซ์ เทรนด์ช็อป ไงครัวซอง โหงวเฮ้ง ไวอากร้าราสเบอร์รีภควัมบดี สหัสวรรษปัจฉิมนิเทศแฟรี แม็กกาซีน เนิร์สเซอรี โซลาร์รีสอร์ท จุ๊ยโทรไฮแจ็คสโตนแอ็คชั่น จ๊อกกี้แอ๊บแบ๊วโบตั๋นฟอยล์ ฮัลโหลเมจิคอุปสงค์วาริชศาสตร์ความหมาย ภควัมบดี ดีพาร์ทเมนต์เรซินฮ็อตอินดอร์ หลวงปู่ เต๊ะตัวตนแกรนด์สังโฆไบโอ ฟอยล์อาว์บริกรม็อบคอนเซ็ปต์ เตี๊ยม ก๊วน บลูเบอร์รีไมเกรนแอดมิสชัน ชนะเลิศหลวงปู่ โดนัท อิสรชนโอ้ย แป๋วอุปสงค์กับดัก จีดีพีฟลุคซัมเมอร์รีโมตนางแบบ พรีเมียมพาร์ตเนอร์พงษ์ ไฮเวย์ตุ๋ยหลวงพี่เตี๊ยม หลินจือ ปิกอัพแฟรนไชส์เกรด ฮ็อตเทคโนแครตแพนด้าเบญจมบพิตรโปรเจกต์ ดั๊มพ์หยวนดอกเตอร์ โบรชัวร์แอปเปิ้ลสแควร์อีโรติกคอนโด สโรชารีวิวผู้นำไฮเวย์ บริกรล้มเหลว แผดเผาพุดดิ้งขั้นตอน ว้อยวอลนัทออดิทอเรียมยิวโปสเตอร์ บอร์ดสะบึมส์ฮอตดอกล็อบบี้ รีโมตวอล์ก นางแบบแพ็คโคโยตี้ลิสต์ สต๊อกลาตินคลับ ชัวร์จตุคามโทรโข่งวิดีโอดาวน์ แซนด์วิชฟาสต์ฟู้ด โฮปพฤหัสแกสโซฮอล์แอสเตอร์แชเชือนน็อคเทรนด์อวอร์ด ไง คีตปฏิภาณผลักดันเบนโลชีส เบญจมบพิตรทำงาน ชะโนดสปอร์ต ตุ๊ดวอล์กดีพาร์ตเมนท์ เฮียแดนเซอร์พูลคอร์ส เซอร์วิสแจ็กพอต รีเสิร์ช ไมเกรน เก๊ะ เบนโตะครูเสด โอยัวะรันเวย์ธัมโม แอสเตอร์สถาปัตย์ แรงผลักเกจิวันเวย์ด็อกเตอร์เซลส์แมน ดยุค',
+                  'hover' : false,
+                  'style' : {
+                       width: 0,
+                       height: 0
+                  },
+                  'col' : 4,
+                  'infoshow' : false,
+                  'infoStyle' :  {
+                    'left': 0,
+                    'width': 0,
+                    'height': 0,
+                    'widthBox' : 0
+                  },
+                  'cursor' : cursorUrl,
+                  'imgStyle' : {
+                      'zindex' : 0,
+                      'left': 0
+                  },
+                  'detailShow' : false
+              },
+              {
+                  'images' : person6,
+                  'name' : 'Anna Hoppins',
+                  'desc' : 'Executive Partner, Managing Director, Phygital Consulting',
+                  'longdesc' : 'เซอร์สปาแชมพู เฮียแบล็คจิ๊กภควัทคีตาเกย์ ความหมายไดเอ็ตบลอนด์ซีเรียส เมจิกรามาธิบดีซีนีเพล็กซ์สแควร์ ฮาราคีรีป่าไม้แทคติคไฮแจ็ค สเตอริโอต่อยอดแฟ็กซ์ เทรนด์ช็อป ไงครัวซอง โหงวเฮ้ง ไวอากร้าราสเบอร์รีภควัมบดี สหัสวรรษปัจฉิมนิเทศแฟรี แม็กกาซีน เนิร์สเซอรี โซลาร์รีสอร์ท จุ๊ยโทรไฮแจ็คสโตนแอ็คชั่น จ๊อกกี้แอ๊บแบ๊วโบตั๋นฟอยล์ ฮัลโหลเมจิคอุปสงค์วาริชศาสตร์ความหมาย ภควัมบดี ดีพาร์ทเมนต์เรซินฮ็อตอินดอร์ หลวงปู่ เต๊ะตัวตนแกรนด์สังโฆไบโอ ฟอยล์อาว์บริกรม็อบคอนเซ็ปต์ เตี๊ยม ก๊วน บลูเบอร์รีไมเกรนแอดมิสชัน ชนะเลิศหลวงปู่ โดนัท อิสรชนโอ้ย แป๋วอุปสงค์กับดัก จีดีพีฟลุคซัมเมอร์รีโมตนางแบบ พรีเมียมพาร์ตเนอร์พงษ์ ไฮเวย์ตุ๋ยหลวงพี่เตี๊ยม หลินจือ ปิกอัพแฟรนไชส์เกรด ฮ็อตเทคโนแครตแพนด้าเบญจมบพิตรโปรเจกต์ ดั๊มพ์หยวนดอกเตอร์ โบรชัวร์แอปเปิ้ลสแควร์อีโรติกคอนโด สโรชารีวิวผู้นำไฮเวย์ บริกรล้มเหลว แผดเผาพุดดิ้งขั้นตอน ว้อยวอลนัทออดิทอเรียมยิวโปสเตอร์ บอร์ดสะบึมส์ฮอตดอกล็อบบี้ รีโมตวอล์ก นางแบบแพ็คโคโยตี้ลิสต์ สต๊อกลาตินคลับ ชัวร์จตุคามโทรโข่งวิดีโอดาวน์ แซนด์วิชฟาสต์ฟู้ด โฮปพฤหัสแกสโซฮอล์แอสเตอร์แชเชือนน็อคเทรนด์อวอร์ด ไง คีตปฏิภาณผลักดันเบนโลชีส เบญจมบพิตรทำงาน ชะโนดสปอร์ต ตุ๊ดวอล์กดีพาร์ตเมนท์ เฮียแดนเซอร์พูลคอร์ส เซอร์วิสแจ็กพอต รีเสิร์ช ไมเกรน เก๊ะ เบนโตะครูเสด โอยัวะรันเวย์ธัมโม แอสเตอร์สถาปัตย์ แรงผลักเกจิวันเวย์ด็อกเตอร์เซลส์แมน ดยุค',
+                  'hover' : false,
+                  'style' : {
+                       width: 0,
+                       height: 0
+                  },
+                  'col' : 4,
+                  'infoshow' : false,
+                  'infoStyle' :  {
+                    'left': 0,
+                    'width': 0,
+                    'height': 0,
+                    'widthBox' : 0
+                  },
+                  'cursor' : cursorUrl,
+                  'imgStyle' : {
+                      'zindex' : 0,
+                      'left': 0
+                  },
+                  'detailShow' : false
+              }
+          ],
+          scrollPosition: null,
+          hover: false,
         }
     },
     components: {
         VueScrollSnap
     },
-    computed : {
-         positionTeam : function() {
-            console.log(this.position);
-
-            if(this.position > 30) {
-                if(this.position >= 50) {
-                    return 16;
-                }
-                return this.position/3.125;
-            } else {
-                return "0";
-            }
-            
-        }
+    mounted() {
+        window.addEventListener('scroll', this.onScroll);
     },
     methods: {
-         onScroll: function(e, position) {
-             var positionCal = ((position.scrollTop * 100) / 2) / this.$refs.infoBox.clientHeight
-
+         onScroll: function() {
+             var positionCal = (((window.scrollY) * 100) * 2) / this.$refs.infoBox.clientHeight
+                
              if(positionCal <= 30) {
                  this.position = 30;
-             } else {
+             } else if (positionCal >= 100){
+                 this.position = 100;
+             }
+             else {
                  this.position = positionCal;
              }   
         },
@@ -328,7 +533,72 @@ export default {
             }
 
             return this.clients[index].imageActive;
+        },
+         updateScroll() {
+             console.log(window.scrollY);
+            this.scrollPosition = window.scrollY
+        },
+        hoverImage(index) {
+
+            if(!this.persons[index].hover && !this.persons[index].infoshow) {
+                this.persons[index].style.width = 98
+                this.persons[index].style.height =  98.5
+                this.persons[index].hover = true
+            }
+
+        },
+
+        leaveImage(index) {
+             if(this.persons[index].hover) {
+                this.persons[index].style.width = 0
+                this.persons[index].style.height =  0
+                this.persons[index].hover = false
+            }
+        },
+        sideLeaveShow(e, index) {
+
+            var parent = e.target.parentElement.parentElement
+            var parentPosition = parent.getBoundingClientRect().left ;
+
+            if(this.persons[index].infoshow) {
+                this.persons[index].col = 4;
+                this.persons[index].cursor = cursorUrl
+                this.persons[index].infoStyle.left = 0
+                this.persons[index].infoStyle.width = 0
+                this.persons[index].infoStyle.height = 0 
+                this.persons[index].imgStyle.zindex = 0
+                this.persons[index].imgStyle.left = 0
+                this.persons[index].infoStyle.widthBox = 0
+                this.persons[index].detailShow = false
+                
+            } else {
+                this.leaveImage(index)
+                this.persons[index].col = 4;
+                this.persons[index].cursor = ''
+                this.persons[index].infoStyle.left = '-' + ((parentPosition + 40) - parent.clientWidth)
+                this.persons[index].infoStyle.width = '63'
+                this.persons[index].infoStyle.height = '98.2'
+                this.persons[index].imgStyle.zindex = '9999'
+                this.persons[index].imgStyle.left = '-' + ((parentPosition + 40) - parent.clientWidth)
+
+
+                setTimeout(() => 
+                    this.persons[index].infoStyle.widthBox = '95.5'
+                , 200);
+
+        
+                setTimeout(() => 
+                    this.persons[index].detailShow = true
+                , 600);
+                
+    
+            }
+
+            this.persons[index].infoshow  = !this.persons[index].infoshow
         }
+
+
+        
         
        
     },

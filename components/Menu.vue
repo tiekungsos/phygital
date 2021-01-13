@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="main" :style="{'cursor' :`url(${cursorDotUrl}),auto`}">
         <div class="tab-parent" v-if="menuActiveParent">
           <div v-if="menuActive">
 
@@ -11,7 +11,9 @@
                           name="bv-menu" 
                           enter-active-class="animate__animated animate__fadeInDown"  
                           leave-active-class="animate__animated animate__slideOutUp" >
-                          <h1 class="menu-link" v-if="menuActiveIn.works">works</h1>
+                          <h1 class="menu-link" v-if="menuActiveIn.works">
+                            <nuxt-link to="#">works</nuxt-link>
+                          </h1>
                       </transition>
                     </b-col>
                     <b-col cols="12" class="bv-menu-menu">
@@ -19,9 +21,12 @@
                           name="bv-menu" 
                           enter-active-class="animate__animated animate__fadeInDown"  
                           leave-active-class="animate__animated animate__slideOutUp" >
-                          <h1 class="menu-link" v-if="menuActiveIn.about">
+
+                            <h1 class="menu-link" v-if="menuActiveIn.about">
                                 <nuxt-link to="/about">about</nuxt-link>
-                          </h1>
+                            </h1>
+
+                          
                         </transition>
                     </b-col>
                     <b-col cols="12" class="bv-menu-menu">
@@ -30,7 +35,8 @@
                           enter-active-class="animate__animated animate__fadeInDown"  
                           leave-active-class="animate__animated animate__slideOutUp" >
                         <h1 class="menu-link" v-if="menuActiveIn.growup">
-                            GROWUP
+                          <nuxt-link to="growup">GROWUP</nuxt-link>
+                            
                         </h1>
                       </transition>
                     </b-col>
@@ -85,7 +91,7 @@
 
     <div class="pg-nav">
       <div class="logo">
-        <nuxt-link to="/"><img src="~/assets/image/logo/logo1.png" alt="logo 1"></nuxt-link>
+        <nuxt-link to="/"><img src="~/assets/image/logo/logo1.png" alt="logo 1" v-if="!isActive" :style="{'cursor' :`url(${cursorDotUrl}),auto`}"></nuxt-link>
       </div>
       <div class="center"  v-on:click="showMenu()">
           <v-burger 
@@ -93,10 +99,11 @@
           type="spin" 
           :active="isActive"
           @updated="isActive = $event"
-          :burgerStyle="burgerStyle" />
+          :burgerStyle="burgerStyle" 
+          :style="{'cursor' :`url(${cursorDotUrl}),auto`}"/>
       </div>
-      <div class="content">
-        Contact
+      <div class="content" v-if="!isActive" :style="{'cursor' :`url(${cursorDotUrl}),auto`}">
+        <nuxt-link :style="{'cursor' :`url(${cursorDotUrl})25 15 ,auto`}" to="contact">Contact</nuxt-link>
       </div>
     </div>
  
@@ -106,7 +113,8 @@
 import 'animate.css';
 import VueAos from 'vue-aos'
 import { VBurger } from 'vue-burger';
-
+import cursorDotUrl from '~/assets/image/icon/dot.png'
+import cursorUrl from '~/assets/image/icon/right.png'
 
 export default {
     data() {
@@ -118,7 +126,9 @@ export default {
           '--layer-width': '10px',
           
         },
+        cursorUrl,
          isActive : false,
+         cursorDotUrl,
         elmentDelay : [],
         menuActiveParent : false,
         menuActive : false,
