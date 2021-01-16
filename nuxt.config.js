@@ -22,7 +22,9 @@ export default {
     css: [
         '~/assets/scss/custom.scss',
         '~/assets/scss/agency.scss',
-        '~/assets/scss/contact.scss'
+        '~/assets/scss/contact.scss',
+        '~/assets/scss/works.scss',
+
     ],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)

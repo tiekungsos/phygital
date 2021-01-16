@@ -12,7 +12,7 @@
                           enter-active-class="animate__animated animate__fadeInDown"  
                           leave-active-class="animate__animated animate__slideOutUp" >
                           <h1 class="menu-link" v-if="menuActiveIn.works">
-                            <nuxt-link to="#">works</nuxt-link>
+                            <nuxt-link to="/works">works</nuxt-link>
                           </h1>
                       </transition>
                     </b-col>
@@ -91,7 +91,7 @@
 
     <div class="pg-nav">
       <div class="logo">
-        <nuxt-link to="/"><img src="~/assets/image/logo/logo1.png" alt="logo 1" v-if="!isActive" :style="{'cursor' :`url(${cursorDotUrl}),auto`}"></nuxt-link>
+        <nuxt-link to="/"><img src="~/assets/image/logo/logo1.png" alt="logo 1" v-if="!isActive" :style="{'cursor' :`url(${cursorDotUrl}) 10 15,auto`}"></nuxt-link>
       </div>
       <div class="center"  v-on:click="showMenu()">
           <v-burger 
@@ -102,8 +102,8 @@
           :burgerStyle="burgerStyle" 
           :style="{'cursor' :`url(${cursorDotUrl}),auto`}"/>
       </div>
-      <div class="content" v-if="!isActive" :style="{'cursor' :`url(${cursorDotUrl}),auto`}">
-        <nuxt-link :style="{'cursor' :`url(${cursorDotUrl})25 15 ,auto`}" to="contact">Contact</nuxt-link>
+      <div class="content" v-if="!isActive" >
+        <nuxt-link :style="{'cursor' :`url(${cursorDotUrl}),auto`,}" to="contact">Contact</nuxt-link>
       </div>
     </div>
  
@@ -148,6 +148,7 @@ export default {
     },
     methods: {
         async showMenu() {
+            this.isActive = !this.isActive
             if(this.menuActiveParent == false) {
             this.menuActiveParent = true;
             }

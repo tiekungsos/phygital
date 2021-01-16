@@ -13,15 +13,18 @@
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
+    "magic-grid": "^3.2.4",
     "nuxt": "^2.14.6",
     "vue": "^2.6.12",
     "vue-aos": "^1.1.0",
     "vue-burger": "^1.1.0",
     "vue-carousel": "^0.18.0",
     "vue-check-view": "^0.3.0",
+    "vue-grid-layout": "^2.3.11",
     "vue-scroll": "^2.1.13",
     "vue-scroll-snap": "^0.1.10",
-    "vue-slick-carousel": "^1.0.6"
+    "vue-slick-carousel": "^1.0.6",
+    "vue-virtual-grid": "^2.3.0"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",

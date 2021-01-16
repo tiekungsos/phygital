@@ -143,8 +143,12 @@
             font-size: 65px;
             font-family: math;
             color: #E91E56;
-            left: 50%;
+            left: 48%;
             top: 5%;
+            width: 100px;
+            height: 100px;
+            padding-right: 50px;
+            padding-bottom: 50px;
         }
         .content {
             position: absolute;
@@ -154,6 +158,9 @@
             z-index: 100;
             right: 4vw;
             padding: 20px;
+            a {
+                padding: 20px 20px;
+            }
         }
     }
     // .slick-arrow.slick-next {
@@ -161,6 +168,27 @@
     //     right: 7vw;
     //     top: 95vh;
     // }
+    .hamburger {
+        font: inherit;
+        display: inline-block;
+        overflow: visible;
+        margin: 0;
+        padding: 0px;
+        cursor: pointer;
+        transition-timing-function: linear;
+        transition-duration: .15s;
+        transition-property: opacity, filter;
+        text-transform: none;
+        color: inherit;
+        border: 0;
+        background-color: transparent;
+    }
+    .hamburger-box {
+        position: relative;
+        display: inline-block;
+        width: 0px;
+        height: 0px;
+    }
     .slick-arrow.slick-next::before {
         font-family: fantasy;
         font-size: 30px;
