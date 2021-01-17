@@ -276,7 +276,7 @@
             color: white;
             padding-left: 7.2vw;
             padding-right: 7.2vw;
-            padding-top: 10%;
+            padding-top: 6%;
             text-align: center;
             .growup {
                 font-size: 72px;
@@ -291,7 +291,7 @@
         .theme {
             padding-left: 7.2vw;
             padding-right: 7.2vw;
-            margin-top: 50px;
+            margin-top: 10px;
             .container {
                 @media (min-width: 1200px) {
                     max-width: 1200px;
@@ -349,13 +349,15 @@
                         .descinfo {
                             font-family: 'DB Adman X';
                             font-size: 20px;
-                            padding-top: 42px;
+                            padding-top: 32px;
+                            padding-bottom: 20px;
                         }
                         .nameanddate {
                             font-family: 'Prompt';
                             font-size: 13.5px;
-                            padding-top: 62px;
+                            padding-top: 20px;
                             display: flex;
+                            border-top: 1px solid #ffffff;
                             .name-left {
                                 width: 78%;
                             }

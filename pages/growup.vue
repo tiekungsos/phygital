@@ -10,7 +10,7 @@
             <div class="header">
                <b-container fluid>
                    <b-row>
-                        <div class="growup" v-for="(titleIn, index) in title"  v-bind:key="index" >
+                        <div :class="`growup animate__animated animate__fadeIn animate__delay-${(100 * index) + 500}ms`" v-for="(titleIn, index) in title"  v-bind:key="index" >
                             <span class="tital-growup" v-if="index != 0">/</span> {{titleIn.name}} 
                         </div>
                    </b-row>
@@ -20,7 +20,7 @@
             <div class="theme">
                 <b-container fluid class="bv-example-row">
                     <b-row ref="row">
-                        <b-col class="person-img" 
+                        <b-col :class="`person-img animate__animated animate__fadeInUpBig animate__delay-${(100 * index) + 1000}ms`"
                             v-for="(person, index) in persons" 
                             v-bind:key="index" 
                             :style="{'cursor':`url(${persons[index].cursor})25 15 ,auto`}" 
@@ -187,13 +187,7 @@
                                         <span>Sheare</span>
                                     </b-col>
                                     <b-col cols="10">
-                                        <b-row>
-                                            <p>Facebook</p>
-                                            <p>Twitter</p>
-                                            <p>Linkedin</p>
-                                            <p>Email</p>
-                                            <p>Copy Link</p>
-                                        </b-row>
+                                        <Socia/>
                                     </b-col>
                                 </b-row>
                             </transition>

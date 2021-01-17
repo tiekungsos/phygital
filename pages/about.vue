@@ -134,14 +134,7 @@
                         name="bv-menu" 
                         enter-active-class="animate__animated animate__fadeInUp"  
                         leave-active-class="animate__animated animate__slideOutUp" >
-                        <b-row>
-                            <b-col class="text">FACEBOOK</b-col>
-                            <b-col class="text">MESSENGER</b-col>
-                            <b-col class="text">INSTAGRAM</b-col>
-                            <b-col class="text">TWITTER</b-col>
-                            <b-col class="text">LINKEDIN</b-col>
-                            <b-col class="text">LINE</b-col>
-                        </b-row>
+                        <Socia/>
                         </transition>
                     </b-col>
                 </b-row>

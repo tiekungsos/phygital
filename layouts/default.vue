@@ -72,6 +72,11 @@ html {
   box-sizing: border-box;
 }
 
+body {
+    background-color: #1C2C58;
+}
+
+
 *,
 *::before,
 *::after {
