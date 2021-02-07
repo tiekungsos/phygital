@@ -1,84 +1,69 @@
 <template>
-  <div class="main">
-
-    <Menu/>
+    <div class="main">
     
-    <VueSlickCarousel 
-      :dots="false" 
-      :arrows="true"
-      :lazyLoad="'ondemand'"
-      :dotsClass="'slick-dots custom-dot-class'"
-      :edgeFriction="1" 
-      :infinite="true"
-      :slidesToShow="1"
-      :slidesToScroll="1"
-      :speed="1000"
-      @beforeChange="hidebar()"
-    >
+        <Menu/>
     
-    <div v-for="(imageSlideData, index) in imageSlide" v-bind:key="index">
-      <div class="image-slide-main" :style="{'cursor' :`url(${cursorDotUrl}),auto`}">
-        <div class="image-slide" >
-          
-          <div class="content-left">
-            <div class="content-left-line1">
-               <h1 class="animate__animated animate__slideInUp animate__delay-200ms">
-              {{imageSlideData.content.line1}}
-            </h1>
+        <VueSlickCarousel :dots="false" :arrows="true" :lazyLoad="'ondemand'" :dotsClass="'slick-dots custom-dot-class'" :edgeFriction="1" :infinite="true" :slidesToShow="1" :slidesToScroll="1" :speed="1000" @beforeChange="hidebar()">
+    
+            <div v-for="(imageSlideData, index) in imageSlide" v-bind:key="index">
+                <div class="image-slide-main" :style="{'cursor' :`url(${cursorDotUrl}),auto`}">
+                    <div class="image-slide">
+    
+                        <div class="wecreate-content" v-on:click="changePage('/works')" :style="{'cursor' :`url(${cursorDownUrl}),auto`}"></div>
+                        <div class="content-left">
+                            <div class="content-left-line1">
+                                <h1 class="animate__animated animate__slideInUp animate__delay-200ms">
+                                    {{imageSlideData.content.line1}}
+                                </h1>
+                            </div>
+    
+                            <div class="revert-prant">
+                                <div class="revert animate__animated animate__slideInLeft animate__delay-500ms">
+                                    <h2 class="animate__animated animate__slideInUp animate__delay-1300ms">{{imageSlideData.content.line2}}</h2>
+                                </div>
+                            </div>
+                            <div class="contentLineLast">
+                                <h2 v-bind:class="['contentLineLast-in', 'animate__animated','animate__fadeInUpBig','animate__delay-1500ms',imageSlideData.content.line3.class]">
+                                    <span v-for="(textContent, index) in imageSlideData.content.line3.text" v-bind:key="index">
+                                  {{textContent}}  
+                                  <span class="red" style="color: red !important;">
+                                    {{checkNumber(imageSlideData.content.line3.text, index)}}
+                                  </span>
+                                    </span>
+                                </h2>
+                            </div>
+    
+                        </div>
+                        <img v-lazy-load :src="`${imageSlideData.image}`" alt="First slide">
+                    </div>
+    
+                    <div class="image-slide-right">
+                        <div class="backChangeColor" :style="[
+                                    imageSlide[index].active ? {'width': '100%','height' :'100%'} : {'width': '0%','height' :'0%'},
+                                    {'cursor': `url(${cursorUrl}),auto`},
+                                    imageSlide[index].active === 2 ? {'right': '100%'} : {'right': '0'},
+                                    {'opacity': '50%'}
+                          ]"></div>
+                        <div class="text-right-out animate__animated animate__slideInRight animate__delay-2s">
+                            <div class="text-right " :style="{'color':colorText,'cursor' :`url(${cursorUrl}),auto`}">
+                                {{addNextText(index)}}
+                            </div>
+                        </div>
+    
+                        <img v-lazy-load :src="`${addNextImage(index)}`" alt="Second slide">
+                    </div>
+                </div>
             </div>
-           
-            <div class="revert-prant">
-              <div class="revert animate__animated animate__slideInLeft animate__delay-500ms">
-                <h2 class="animate__animated animate__slideInUp animate__delay-1300ms">{{imageSlideData.content.line2}}</h2>
-              </div>
-            </div>
-            <div class="contentLineLast">
-              <h2 v-bind:class="['contentLineLast-in', 'animate__animated','animate__slideInUp','animate__delay-1800ms',imageSlideData.content.line3.class]">
-                <span v-for="(textContent, index) in imageSlideData.content.line3.text" v-bind:key="index">
-                  {{textContent}}  
-                  <span class="red" style="color: red !important;">
-                    {{checkNumber(imageSlideData.content.line3.text, index)}}
-                  </span>
-                </span>
-              </h2>
-            </div>
-            
-          </div>
-          <img :src="`${imageSlideData.image}`" alt="First slide">
-        </div>
-        
-        <div class="image-slide-right">
-             <div class="backChangeColor" 
-          :style="[
-                    imageSlide[index].active ? {'width': '100%','height' :'100%'} : {'width': '0%','height' :'0%'},
-                    {'cursor': `url(${cursorUrl}),auto`},
-                    imageSlide[index].active === 2 ? {'right': '100%'} : {'right': '0'},
-                    {'opacity': '50%'}
-          ]"
-          ></div>
-          <div class="text-right-out animate__animated animate__slideInRight animate__delay-2s">
-            <div class="text-right " :style="{'color':colorText,'cursor' :`url(${cursorUrl}),auto`}" >
-              {{addNextText(index)}}
-            </div>
-          </div>
-          
-          <img :src="`${addNextImage(index)}`" alt="Second slide">
-        </div>
-      </div>
-    </div>     
+    
+    
+            <template #prevArrow>
+                      <div class="custom-arrow-prevArrow animate__animated animate__fadeIn animate__delay-2s animate__delay-2s" :style="{'cursor' :`url(${cursorDotUrl}),auto`}"></div>
+</template>
 
-
-    <template #prevArrow >
-      <div class="custom-arrow-prevArrow animate__animated animate__fadeIn animate__delay-2s animate__delay-2s" :style="{'cursor' :`url(${cursorDotUrl}),auto`}"></div>
-    </template>
-
-    <template #nextArrow="arrowOption"  >
-      <div class="custom-arrow animate__animated animate__fadeIn animate__delay-2s" 
-      :style="{'cursor' :`url(${cursorUrl}),auto`}" 
-      @mouseover="mouseOver(arrowOption.currentSlide)"  
-      @mouseleave="mouseOut(arrowOption.currentSlide)"
-      ></div>
-    </template>
+<template #nextArrow="arrowOption">
+    <div class="custom-arrow animate__animated animate__fadeIn animate__delay-2s" :style="{'cursor' :`url(${cursorUrl}),auto`}" @mouseover="mouseOver(arrowOption.currentSlide)" @mouseleave="mouseOut(arrowOption.currentSlide)">
+    </div>
+</template>
 
     </VueSlickCarousel>
   </div>
@@ -91,212 +76,248 @@ import backgroundImagePath3 from '~/assets/image/slide/image3.jpg'
 import backgroundImagePath4 from '~/assets/image/slide/image4.jpg'
 import cursorUrl from '~/assets/image/icon/right.png'
 import cursorDotUrl from '~/assets/image/icon/dot.png'
+import cursorDownUrl from '~/assets/image/icon/down-arrow.png'
 
- import VueSlickCarousel from 'vue-slick-carousel'
-  import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-  // optional style for arrows & dots
-  import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+// optional style for arrows & dots
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 import 'animate.css';
 import VueAos from 'vue-aos'
 import { VBurger } from 'vue-burger';
 
 export default {
-   transition: 'page', // set our transition with nuxt.js
+    transition: 'page', // set our transition with nuxt.js
     data() {
-      return {
-        burgerStyle: {
-          '--padding': '0px',
-          '--layer-bg-color': 'yellow',
-          '--active-layer-bg-color': '#ABABAB',
-          '--layer-width': '10px',
-        },
-        imageSlide : [
-          {
-            'image' : backgroundImagePath1,
-            'content' : {
-              'line1' : 'PHYGITAL',
-              'line2' : 'We create world-class',
-              'line3' : {
-                'text' : ['Physical & digital product'],
-                'style' : {
-                  'font-size': '72px !important',
-                  'margin-top': '40px',
-                },
-                'class' : 'bannerType1'
-              }
+        return {
+            sliders: [],
+            burgerStyle: {
+                '--padding': '0px',
+                '--layer-bg-color': 'yellow',
+                '--active-layer-bg-color': '#ABABAB',
+                '--layer-width': '10px',
             },
-            'active' : false
-          },
-          {
-            'image' : backgroundImagePath2,
-            'content' : {
-              'line1' : 'PHYSICAL',
-              'line2' : 'Compound of PHYGITAL',
-              'line3' : {
-                'text' : [
-                  'PHYSICAL BUSINESSES',
-                  'REAL-LIFE EXPERIENCES',
-                  'TRADITIONAL',
-                  'INCREASED IN-STORE VISITS',
-                  'STORE SHOPPING',
-                  'WORD OF MOUNT'
-                ],
-                'style' : {
-                  'font-size': '30px !important',
-                  'font-family': 'DB Adman X',
-                  'width': '30vw',
-                  'margin-top': '30px',
-                  'line-height': '0.9'
+            imageSlide: [{
+                    'image': backgroundImagePath1,
+                    'content': {
+                        'line1': 'PHYGITAL',
+                        'line2': 'We create world-class',
+                        'line3': {
+                            'text': ['Physical & digital product'],
+                            'style': {
+                                'font-size': '72px !important',
+                                'margin-top': '40px',
+                            },
+                            'class': 'bannerType1'
+                        }
+                    },
+                    'active': false
                 },
-                'class' : 'bannerType2'
-              }
-            },
-            'active' : false
-          },
-          {
-            'image' : backgroundImagePath3,
-            'content' : {
-              'line1' : 'DIGITAL',
-              'line2' : 'Compound of PHYGITAL',
-              'line3' : {
-                'text' : [
-                  'DIGITAL LANDSCAPE',
-                  'DIGITAL EXPERIENCES',
-                  'INNOVATION',
-                  'NCREASED ON SOCIAL MEDIA',
-                  'ONLINE SHOPPING',
-                  'ENGAGEMENT'
-                ],
-                'style' : {
-                  'font-size': '30px !important',
-                  'font-family': 'DB Adman X',
-                  'width': '30vw',
-                  'margin-top': '30px',
-                  'line-height': '0.9'
+                {
+                    'image': backgroundImagePath2,
+                    'content': {
+                        'line1': 'PHYSICAL',
+                        'line2': 'Compound of PHYGITAL',
+                        'line3': {
+                            'text': [
+                                'PHYSICAL BUSINESSES',
+                                'REAL-LIFE EXPERIENCES',
+                                'TRADITIONAL',
+                                'INCREASED IN-STORE VISITS',
+                                'STORE SHOPPING',
+                                'WORD OF MOUNT'
+                            ],
+                            'style': {
+                                'font-size': '30px !important',
+                                'font-family': 'DB Adman X',
+                                'width': '30vw',
+                                'margin-top': '30px',
+                                'line-height': '0.9'
+                            },
+                            'class': 'bannerType2'
+                        }
+                    },
+                    'active': false
                 },
-                'class' : 'bannerType2'
-              }
-            },
-            'active' : false
-          },
-        ],
+                {
+                    'image': backgroundImagePath3,
+                    'content': {
+                        'line1': 'DIGITAL',
+                        'line2': 'Compound of PHYGITAL',
+                        'line3': {
+                            'text': [
+                                'DIGITAL LANDSCAPE',
+                                'DIGITAL EXPERIENCES',
+                                'INNOVATION',
+                                'NCREASED ON SOCIAL MEDIA',
+                                'ONLINE SHOPPING',
+                                'ENGAGEMENT'
+                            ],
+                            'style': {
+                                'font-size': '30px !important',
+                                'font-family': 'DB Adman X',
+                                'width': '30vw',
+                                'margin-top': '30px',
+                                'line-height': '0.9'
+                            },
+                            'class': 'bannerType2'
+                        }
+                    },
+                    'active': false
+                },
+            ],
 
-        imageSlideNext : [
-          backgroundImagePath1,
-          backgroundImagePath2,
-          backgroundImagePath3,
-        ],
-        imageSlideNextText : [
-          'PHYGITAL',
-          'PHYSICAL',
-          'DIGITAL',
-        ],
-        active: false,
-        slide: 0,
-        sliding: null,
-        colorText:'transparent',
-        cursorUrl,
-        cursorDotUrl,
-        isActive : false,
-        elmentDelay : [],
-        menuActiveParent : false,
-        menuActive : false,
-        menuActiveIn : {
-          works : false,
-          about : false,
-          growup : false,
-          menuButtom : false
-        },
-        indexPage : null
-      }
+            imageSlideNext: [
+                backgroundImagePath1,
+                backgroundImagePath2,
+                backgroundImagePath3,
+            ],
+            imageSlideNextText: [
+                'PHYGITAL',
+                'PHYSICAL',
+                'DIGITAL',
+            ],
+            active: false,
+            slide: 0,
+            sliding: null,
+            colorText: 'transparent',
+            cursorUrl,
+            cursorDotUrl,
+            cursorDownUrl,
+            isActive: false,
+            elmentDelay: [],
+            menuActiveParent: false,
+            menuActive: false,
+            menuActiveIn: {
+                works: false,
+                about: false,
+                growup: false,
+                menuButtom: false
+            },
+            indexPage: null
+        }
     },
-    components: { VueSlickCarousel,VueAos,VBurger },
+    async asyncData({ $axios }) {
+        let { data } = await $axios.get("/sliders");
+
+        var dataAll = [],
+            slideNext = [],
+            slideNextText = []
+
+        data.data.forEach((slider, index) => {
+            var dataBuild = {}
+            if(slider.status != 1) {
+              return
+            }
+
+            var html = slider.detail;
+            var div = document.createElement("div");
+            div.innerHTML = html;
+            var text = div.textContent || div.innerText || "";
+
+            text = text.split("/");
+            
+            dataBuild = {
+                image: slider.image_slider.url,
+                content: {
+                    line1: slider.header,
+                    line2: slider.header_second,
+                    line3: {
+                        text: text,
+                        style: {
+                            'font-size': '30px !important',
+                            'font-family': 'DB Adman X',
+                            'width': '30vw',
+                            'margin-top': '30px',
+                            'line-height': '0.9'
+                        },
+                        class: text.length > 1 ? 'bannerType2' : 'bannerType1'
+                    }
+                },
+                active: false
+            }
+            dataAll.push(dataBuild)
+            slideNext.push(slider.image_slider.url)
+            slideNextText.push(slider.header)
+        });
+
+        return { imageSlide: dataAll,imageSlideNext : slideNext,imageSlideNextText: slideNextText}
+    },
+    components: { VueSlickCarousel, VueAos, VBurger },
     methods: {
-      onSlideStart(slide) {
-        this.sliding = true
-      },
-      onSlideEnd(slide) {
-        this.sliding = false
-      },
-      addNextImage(index) {
-        if(this.imageSlideNext[index + 1] === undefined) {
-          return this.imageSlideNext[0];
-        }
+        changePage(page) {
+            this.$router.push(page)
+        },
+        onSlideStart(slide) {
+            this.sliding = true
+        },
+        onSlideEnd(slide) {
+            this.sliding = false
+        },
+        addNextImage(index) {
+            if (this.imageSlideNext[index + 1] === undefined) {
+                return this.imageSlideNext[0];
+            }
 
-        return this.imageSlideNext[index + 1];
-      },
-      addNextText(index) {
-        if(this.imageSlideNextText[index + 1] === undefined) {
-          return this.imageSlideNextText[0];
-        }
+            return this.imageSlideNext[index + 1];
+        },
+        addNextText(index) {
+            if (this.imageSlideNextText[index + 1] === undefined) {
+                return this.imageSlideNextText[0];
+            }
 
-        return this.imageSlideNextText[index + 1];
-      },
-      checkNumber(array, index) {
-        index = index + 1;
-        if(array.length === index) {
-          return ' ';
-        }
+            return this.imageSlideNextText[index + 1];
+        },
+        checkNumber(array, index) {
+            index = index + 1;
+            if (array.length === index) {
+                return ' ';
+            }
 
-        return '/';
-      },
-        mouseOver: function(index){
+            return '/';
+        },
+        mouseOver: function(index) {
             this.active = true
-            this.colorText = 'white' 
+            this.colorText = 'white'
             this.imageSlide[index].active = true
 
             this.indexPage = index
             // index
         },
-        mouseOut:function(index){
-          this.active = false
-          this.imageSlide[index].active = false
-          this.colorText = 'transparent'
+        mouseOut: function(index) {
+            this.active = false
+            this.imageSlide[index].active = false
+            this.colorText = 'transparent'
         },
-        hidebar:function() {
-          var index = this.indexPage
-          this.imageSlide[index].active = 2
+        hidebar: function() {
+            var index = this.indexPage
+            this.imageSlide[index].active = 2
         }
 
     }
-  }
+}
 </script>
 
 
-<style >
+<style>
+/* during entering and leaving : */
 
-  /* during entering and leaving : */
-  /* .page-enter-active, .page-leave-active {
-    position:absolute;
-    max-width:100vw;
+.page-enter-active {
+    position: absolute;
+    max-width: 100vw;
     transition: all 1s ease;
-  } */
+}
 
-  /* entering start */  
-  /* .page-enter {
+/* entering start */
+
+.page-enter {
     bottom: -100%;
-  } */
+}
 
-  /* entering end */
-  /* .page-enter-to {
+/* entering end */
+
+.page-enter-to {
     bottom: 0;
-  } */
-
-
-  /* Enter and leave animations can use different */
-/* durations and timing functions.              */
-.slide-right-enter-active {
-  transition: all .3s;
 }
-.slide-right-leave-active {
-  transition: all .3s;
-}
-.slide-right-enter, .slide-right-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10vw);
-  opacity: 0;
-}
-
-
 </style>
 

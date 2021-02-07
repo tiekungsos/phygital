@@ -1,11 +1,14 @@
 .works {
-    width: 100vw;
+    // width: 100vw;
     // height: 100vh;
     background-color: #1C2C58;
     .works-in {
         // padding-top: 8%;
         padding-top: 8%;
         padding-bottom: 30px;
+        @media (max-width: 1200px) {
+            padding-top: 120px;
+        }
         .team {
             color: white;
             // border-bottom: 1px solid white;
@@ -27,9 +30,24 @@
             padding-left: 7.2vw;
             padding-right: 7.2vw;
             text-align: center;
+            @media (max-width: 480px) {
+                margin-top: 10px;
+            }
             .growup {
                 font-size: 72px;
                 font-weight: 600;
+                @media (max-width: 1200px) {
+                    font-size: 50px;
+                }
+                @media (max-width: 950px) {
+                    font-size: 48px;
+                }
+                @media (max-width: 768px) {
+                    font-size: 40px;
+                }
+                @media (max-width: 480px) {
+                    font-size: 24px;
+                }
                 .tital-growup {
                     font-family: 'prompt';
                     padding-left: 20px;
@@ -39,6 +57,9 @@
         }
         .search {
             width: 100vw;
+            @media (max-width: 480px) {
+                display: none;
+            }
             .search-from {
                 width: 300px;
                 display: flex;
@@ -51,6 +72,7 @@
                     border: 0px;
                     border-bottom: 1px solid #FFF;
                     border-radius: 0;
+                    color: #ffffff;
                 }
                 .icon-serach {
                     padding-left: 15px;
@@ -71,12 +93,18 @@
                 padding-left: 7.2vw;
                 padding-right: 7.2vw;
                 padding-top: 5%;
+                @media (max-width: 768px) {
+                    padding-top: 10%;
+                }
+                .row {
+                    justify-content: center;
+                }
                 .seachTage-block {
-                    width: 20%;
+                    width: auto;
                     font-family: 'prompt';
                     font-size: 13.5px;
                     display: flex;
-                    padding: 10px 10px;
+                    padding: 10px 20px;
                     .tagname {
                         width: 200px;
                     }
@@ -84,7 +112,7 @@
             }
         }
         .icon-plus {
-            margin-left: 100px;
+            margin-left: 50px;
             .hamburger {
                 padding: 0px;
             }
@@ -200,8 +228,15 @@
         .imageGrid {
             padding-right: 30px;
             padding-left: 30px;
-            padding-top: 80px;
+            margin-top: 80px;
             padding-bottom: 50px;
+            @media (max-width: 574px) {
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+            @media (max-width: 480px) {
+                margin-top: 30px;
+            }
             .imageGrid-in {
                 padding-right: 10px;
                 padding-left: 10px;
@@ -291,8 +326,18 @@
                 // padding-left: 3vw;
                 // padding-top: 30px;
                 width: 90%;
+                @media (max-width: 768px) {
+                    width: 100%;
+                    display: block;
+                }
+                .img-work-detail {
+                    width: 100%;
+                }
                 img {
                     width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    // width: 30%;
                 }
                 .work-detail-overview {
                     background-color: white;
@@ -302,6 +347,16 @@
                     padding-right: 20px;
                     padding-top: 20px;
                     position: relative;
+                    width: 35%;
+                    @media (max-width: 1366px) {
+                        width: 50%;
+                    }
+                    @media (max-width: 1200px) {
+                        width: 60%;
+                    }
+                    @media (max-width: 768px) {
+                        width: 100%;
+                    }
                     .overview {
                         font-family: 'DB Adman X';
                         font-size: 20px;
@@ -322,12 +377,24 @@
                     .detail {
                         font-family: 'Prompt-light';
                         font-size: 13.5px;
+                        @media (max-width: 1200px) {
+                            font-size: 13.5px;
+                        }
+                        @media (max-width: 1200px) {
+                            padding-bottom: 60px;
+                        }
+                        @media (max-width: 950px) {
+                            padding-bottom: 100px;
+                        }
                     }
                     .capability-el {
                         position: absolute;
                         bottom: 0;
                         margin-bottom: 20%;
-                        width: 100%;
+                        width: 90%;
+                        @media (max-width: 1200px) {
+                            margin-bottom: 2%;
+                        }
                         .capability {
                             font-family: 'DB Adman X';
                             font-size: 20px;
@@ -368,6 +435,9 @@
                 font-size: 13.5px;
                 // display: grid;
                 text-align: center;
+                @media (max-width: 768px) {
+                    display: none;
+                }
                 .left-arrow {
                     position: absolute;
                     left: 50%;
@@ -425,6 +495,9 @@
                     bottom: 20px;
                     right: 15px;
                     z-index: 99;
+                    @media (max-width: 768px) {
+                        display: none;
+                    }
                 }
                 .cover-image {
                     position: relative;
@@ -432,6 +505,9 @@
                         object-fit: cover;
                         filter: brightness(0.8);
                         transition: all 0.5s linear;
+                        width: 99vw;
+                        height: 717px;
+                        object-fit: cover;
                     }
                     .cover {
                         width: 0%;
@@ -452,16 +528,28 @@
                     top: 30px;
                     z-index: 99;
                     transition: visibility 1s, opacity 0.5s linear;
+                    @media (max-width: 450px) {
+                        left: 3vw;
+                    }
                     .name {
                         font-size: 180px;
                         font-family: 'AXIS';
                         padding-bottom: 300px;
+                        @media (max-width: 768px) {
+                            font-size: 100px;
+                        }
+                        @media (max-width: 450px) {
+                            font-size: 64px;
+                        }
                     }
                     .capability {
                         .in {
                             display: inline-flex;
                             font-size: 24px;
                             font-family: 'Prompt-light';
+                            @media (max-width: 450px) {
+                                font-size: 18px;
+                            }
                             .line {
                                 padding-left: 10px;
                                 padding-right: 10px;
@@ -478,38 +566,15 @@
                     bottom: 20px;
                     left: 15px;
                     z-index: 99;
+                    @media (max-width: 768px) {
+                        left: -15px;
+                    }
                 }
                 img {
                     object-fit: cover;
                     filter: brightness(0.8);
-                }
-            }
-        }
-    }
-    .leave-contact {
-        color: white;
-        padding-top: 10px;
-        .menu-buttom {
-            position: relative;
-            left: 50%;
-            margin: 0;
-            transform: translate(-50%, 0%);
-            width: 90%;
-            font-size: 13.5px;
-            .left-contact {
-                padding-left: 10.625vw;
-                p {
-                    border-bottom: 2px solid #ffffff;
-                    padding-bottom: 0px;
-                    width: fit-content;
-                }
-            }
-            .social-menu {
-                .text {
-                    padding-left: 0;
-                    padding-right: 0;
-                    width: 126px;
-                    text-align: left;
+                    height: 100%;
+                    object-fit: cover;
                 }
             }
         }

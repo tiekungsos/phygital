@@ -14,6 +14,12 @@
                 height: 105vh;
                 object-fit: cover;
             }
+            .wecreate-content {
+                position: absolute;
+                width: 95%;
+                height: 30vh;
+                bottom: 0;
+            }
             .content-left {
                 z-index: 9;
                 position: absolute;
@@ -23,39 +29,72 @@
                 transform: translate(-40%, -50%);
                 text-transform: uppercase;
                 width: fit-content;
-                @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                @media only screen and (max-width: 1600px) {
                     left: 50%;
+                }
+                @media only screen and (max-width: 1280px) {
+                    left: 40vw;
                 }
                 .content-left-line1 {
                     height: 200px;
                     overflow: hidden;
-                    @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                    @media only screen and (max-width: 1600px) {
                         height: 150px;
+                    }
+                    @media only screen and (max-width: 1024px) {
+                        height: 120px;
+                    }
+                    @media only screen and (max-width: 580px) {
+                        height: 70px;
                     }
                 }
             }
             h1 {
                 font-size: 180px;
-                @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                @media only screen and (max-width: 1600px) {
                     font-size: 120px;
+                }
+                @media only screen and (max-width: 1024px) {
+                    font-size: 100px;
+                }
+                @media only screen and (max-width: 580px) {
+                    font-size: 62px;
                 }
             }
             h2 {
                 font-size: 72px;
-                @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                @media only screen and (max-width: 1600px) {
                     font-size: 52px;
+                }
+                @media only screen and (max-width: 1024px) {
+                    font-size: 32px;
+                }
+                @media only screen and (max-width: 580px) {
+                    font-size: 18px;
                 }
             }
             .revert-prant {
                 width: auto;
                 overflow: hidden;
                 position: relative;
+                @media only screen and (max-width: 1024px) {
+                    height: 35px;
+                }
+                @media only screen and (max-width: 580px) {
+                    height: 20px;
+                }
             }
             .revert {
                 color: #1C2C58;
                 background-color: white;
-                @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                @media only screen and (max-width: 1600px) {
                     width: 100%;
+                }
+                @media only screen and (max-width: 1024px) {
+                    width: 100%;
+                }
+                @media only screen and (max-width: 580px) {
+                    width: 80vw;
                 }
                 h2 {
                     margin-left: 10px;
@@ -64,11 +103,24 @@
             .contentLineLast {
                 overflow: hidden;
                 height: 110px;
+                @media only screen and (max-width: 1024px) {
+                    height: 200px;
+                }
+                @media only screen and (max-width: 580px) {
+                    height: 70px;
+                }
                 .bannerType1 {
                     font-size: 72px;
                     margin-top: 40px;
-                    @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                    @media only screen and (max-width: 1600px) {
                         font-size: 52px;
+                    }
+                    @media only screen and (max-width: 1024px) {
+                        font-size: 32px;
+                        margin-top: 10px;
+                    }
+                    @media only screen and (max-width: 580px) {
+                        font-size: 18px;
                     }
                 }
                 .bannerType2 {
@@ -77,10 +129,18 @@
                     width: 30vw;
                     margin-top: 30px;
                     line-height: 0.9;
-                    @media only screen and (min-width: 768px) and (max-width: 1600px) {
+                    @media only screen and (max-width: 1600px) {
                         width: 30vw;
                         // width: 90%;
                         // font-size: 30px !important;
+                    }
+                    @media only screen and (max-width: 1024px) {
+                        width: 50vw;
+                    }
+                    @media only screen and (max-width: 580px) {
+                        margin-top: 20px;
+                        font-size: 18px !important;
+                        width: 80vw;
                     }
                 }
                 .red {
@@ -110,9 +170,12 @@
                     font-size: 120px;
                     color: transparent;
                     margin-left: 6.5vw;
-                    width: 60px;
+                    width: 2.5vw;
                     -webkit-text-stroke-width: 1px;
                     -webkit-text-stroke-color: white;
+                    @media only screen and (max-width: 768px) {
+                        display: none;
+                    }
                 }
             }
             img {
@@ -132,8 +195,18 @@
             z-index: 999;
             top: 25%;
             left: 2.604166666666667vw;
+            @media only screen and (max-width: 1280px) {
+                width: 166px;
+                top: 58px;
+            }
+            @media only screen and (max-width: 520px) {
+                display: none;
+            }
             img {
                 width: 280px;
+                @media only screen and (max-width: 1280px) {
+                    width: 166px;
+                }
             }
         }
         .center {
@@ -149,6 +222,9 @@
             height: 100px;
             padding-right: 50px;
             padding-bottom: 50px;
+            @media only screen and (max-width: 768px) {
+                width: 50px;
+            }
         }
         .content {
             position: absolute;
@@ -156,10 +232,13 @@
             font-size: 18px;
             color: white;
             z-index: 100;
-            right: 4vw;
+            right: 0vw;
             padding: 20px;
             a {
                 padding: 20px 20px;
+            }
+            @media only screen and (max-width: 520px) {
+                display: none;
             }
         }
     }
@@ -196,10 +275,10 @@
         opacity: 1;
         color: white;
         position: absolute;
-        bottom: 3.2vh;
+        bottom: 5.1vh;
         left: 20px;
         @media only screen and (min-width: 768px) and (max-width: 1900px) {
-            bottom: 2.7vh;
+            bottom: 5vh;
         }
         @media only screen and (max-width: 768px) {
             left: -12px;
@@ -218,15 +297,15 @@
     .custom-arrow {
         height: 100vh;
         width: 9.17vw;
-        top: 0;
+        top: 8px;
         transform: translate(0, 0);
         right: 0;
     }
     .custom-arrow-prevArrow {
-        height: 100px;
+        height: 97px;
         width: 100px;
         left: 85vw;
-        top: 95vh;
+        top: 94vh;
         z-index: 100;
         @media only screen and (min-width: 1100px) and (max-width: 1600px) {
             left: 82vw;
@@ -243,6 +322,9 @@
     }
     .hamburger-inner.hamburger-inner:before {
         background-color: #E91E56 !important;
+        @media only screen and (max-width: 768px) {
+            margin-top: 6px;
+        }
     }
     .hamburger-inner {
         background-color: transparent;
@@ -252,6 +334,16 @@
     }
     .hamburger-inner:before {
         background-color: #E91E56 !important;
+    }
+    .hamburger-inner,
+    .hamburger-inner:after,
+    .hamburger-inner:before {
+        @media only screen and (max-width: 768px) {
+            width: 28px;
+        }
+        @media only screen and (max-width: 520px) {
+            width: 30px;
+        }
     }
 }
 
@@ -276,12 +368,22 @@
             h1 {
                 text-transform: uppercase;
                 font-size: 159px;
+                @media only screen and (max-width: 978px) {
+                    font-size: 120px;
+                }
+                @media only screen and (max-width: 570px) {
+                    font-size: 64px;
+                    top: 45%;
+                }
             }
             .menu-link {
                 opacity: 1;
                 transition: color 0.5s linear;
                 color: #979DAF;
                 overflow: hidden;
+                @media only screen and (max-width: 978px) {
+                    color: #ffffff;
+                }
                 a {
                     position: relative;
                     display: inline-block;
@@ -297,36 +399,27 @@
                     &:hover {
                         background-position: 0 100%;
                     }
+                    @media only screen and (max-width: 978px) {
+                        color: #ffffff;
+                        -webkit-text-fill-color: white;
+                    }
                 }
             }
         }
         .bv-menu-menu {
             height: 20vh;
             overflow: hidden;
-        }
-        .menu-buttom {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            margin: 0;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            font-size: 13.5px;
-            .left-contact {
-                padding-left: 10.625vw;
-                p {
-                    border-bottom: 2px solid #ffffff;
-                    padding-bottom: 10px;
-                    width: fit-content;
-                }
+            @media only screen and (max-width: 978px) {
+                height: 120px;
             }
-            .social-menu {
-                .text {
-                    padding-left: 0;
-                    padding-right: 0;
-                    width: 126px;
-                    text-align: left;
-                }
+            @media only screen and (max-width: 570px) {
+                height: 80px;
+            }
+        }
+        .contact-memu {
+            display: none;
+            @media only screen and (max-width: 570px) {
+                display: block;
             }
         }
     }
@@ -478,4 +571,233 @@ a {
 a:hover {
     color: white;
     text-decoration: none;
+}
+
+.leave-contact-from {
+    width: 100vw;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    position: absolute;
+    z-index: 999999999;
+    bottom: 0;
+    transition: height 0.5s linear;
+    .box-leave {
+        position: absolute;
+        width: 885px;
+        height: 844px;
+        background-color: white;
+        bottom: 7%;
+        z-index: 99999;
+        color: black;
+        left: 10%;
+        padding: 30px;
+        transition: all 0.5s linear;
+        @media only screen and (max-width: 990px) {
+            width: 90%;
+            height: 90%;
+            left: 5vw;
+            bottom: 5%;
+        }
+        .close {
+            width: 80px;
+            height: 80px;
+            text-align: center;
+            padding: 14px;
+            opacity: 1;
+            margin-top: -30px;
+            margin-right: 0;
+            position: absolute;
+            right: 0;
+        }
+        .header {
+            color: #1C2C58;
+            font-size: 72px;
+            font-family: 'AXIS';
+            @media only screen and (max-width: 990px) {
+                font-size: 48px;
+            }
+            @media only screen and (max-width: 520px) {
+                font-size: 32px;
+            }
+        }
+        .content {
+            margin-top: 30px;
+            font-family: 'DB Adman X';
+            font-size: 30px;
+            color: #111111;
+            @media only screen and (max-width: 990px) {
+                font-size: 24px;
+            }
+            @media only screen and (max-width: 520px) {
+                font-size: 20px;
+            }
+        }
+        .from {
+            margin-top: 50px;
+            input {
+                padding: 0;
+                margin-bottom: 20px;
+                border: 0px;
+                border-radius: 0;
+                border-bottom: 1px solid #707070;
+                color: #E91E56;
+                font-size: 13.5;
+                font-family: 'AXIS';
+            }
+            input::placeholder {
+                color: #E91E56;
+                font-size: 13.5;
+                font-family: 'AXIS';
+            }
+            button {
+                margin-top: 20px;
+                background-color: transparent;
+                color: #111111;
+                border: 0px;
+                padding: 0;
+                border-bottom: 1px solid #111111;
+                border-radius: 0;
+                font-family: 'Prompt-light';
+                font-size: 16px;
+            }
+        }
+    }
+    .box-directily-in-hover {
+        width: 43%;
+        height: 100%;
+        // background-color: black;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(0, -50%);
+        @media only screen and (max-width: 990px) {
+            display: none;
+        }
+    }
+    .box-directily {
+        z-index: 99999999;
+        background-color: rgba($color: #E91E56, $alpha: 0.8);
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        transition: visibility 1s, opacity 0.5s linear;
+        @media only screen and (max-width: 990px) {
+            display: none;
+        }
+        .box-directily-in {
+            width: 50%;
+            color: white;
+            font-family: 'AXIS';
+            top: 50%;
+            right: 0;
+            transform: translate(0, -50%);
+            position: absolute;
+            line-height: 1.1;
+            .header {
+                font-size: 80px;
+            }
+            .content {
+                font-size: 120px;
+            }
+        }
+    }
+}
+
+.leave-contact-menu {
+    color: white;
+    padding-top: 10px;
+    position: absolute;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-size: 13.5px;
+    z-index: 9999999999999;
+    bottom: 0;
+    @media only screen and (max-width: 978px) {
+        bottom: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    cursor: pointer;
+    .left-contact {
+        padding-left: 10.625vw;
+        @media only screen and (max-width: 570px) {
+            padding-left: 10.625vw;
+        }
+        p {
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 0px;
+            width: fit-content;
+            @media only screen and (max-width: 570px) {
+                font-size: 13.5px;
+                font-family: 'AXIS';
+            }
+        }
+    }
+    .social-menu {
+        // @media only screen and (max-width: 1199px) {
+        //     width: 30px;
+        // }
+        .text {
+            padding-left: 0;
+            padding-right: 0;
+            width: 126px;
+            text-align: left;
+            @media only screen and (max-width: 570px) {
+                width: 50px;
+                font-size: 13.5px;
+                font-family: 'AXIS';
+            }
+        }
+    }
+}
+
+.leave-contact {
+    color: white;
+    padding-top: 10px;
+    position: absolute;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-size: 13.5px;
+    z-index: 9999999999999;
+    // bottom: 0;
+    @media only screen and (max-width: 978px) {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    cursor: pointer;
+    .left-contact {
+        padding-left: 10.625vw;
+        @media only screen and (max-width: 570px) {
+            padding-left: 10.625vw;
+        }
+        p {
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 0px;
+            width: fit-content;
+            @media only screen and (max-width: 570px) {
+                font-size: 13.5px;
+                font-family: 'AXIS';
+            }
+        }
+    }
+    .social-menu {
+        .text {
+            padding-left: 0;
+            padding-right: 0;
+            width: 126px;
+            text-align: left;
+            @media only screen and (max-width: 570px) {
+                width: 50px;
+                font-size: 13.5px;
+                font-family: 'AXIS';
+            }
+        }
+    }
 }

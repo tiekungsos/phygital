@@ -5,33 +5,77 @@
     .contact-content {
         color: white;
         padding-top: 8%;
+        @media only screen and (max-width: 1280px) {
+            padding-top: 10%;
+        }
+        @media only screen and (max-width: 990px) {
+            padding-top: 15%;
+        }
+        @media only screen and (max-width: 645px) {
+            padding-top: 20%;
+        }
+        @media only screen and (max-width: 480px) {
+            padding-top: 150px;
+        }
         .contact-content-in {
             padding-left: 10.625vw;
             padding-right: 10.625vw;
+            @media only screen and (max-width: 520px) {
+                padding-left: 5.625vw;
+                padding-right: 5.625vw;
+            }
             .business {
                 padding-bottom: 20px;
                 font-family: 'Prompt-light';
                 font-size: 24px;
                 text-transform: uppercase;
                 border-bottom: 1px solid #D83959;
+                @media only screen and (max-width: 1280px) {
+                    font-size: 20px;
+                }
+                @media only screen and (max-width: 520px) {
+                    font-size: 14px;
+                }
             }
             .name {
                 height: 230px;
                 padding-top: 20px;
                 padding-bottom: 20px;
                 line-height: 1.5;
+                @media only screen and (max-width: 990px) {
+                    padding-bottom: 0px;
+                    height: 120px;
+                }
                 .name-in {
                     font-family: 'Prompt-light';
                     font-size: 24px;
                     text-transform: uppercase;
+                    @media only screen and (max-width: 1280px) {
+                        font-size: 20px;
+                    }
+                    @media only screen and (max-width: 520px) {
+                        font-size: 14px;
+                    }
                 }
                 .tel-in {
                     font-family: 'DB Adman X';
                     font-size: 48px;
+                    @media only screen and (max-width: 1280px) {
+                        font-size: 38px;
+                    }
+                    @media only screen and (max-width: 520px) {
+                        font-size: 24px;
+                    }
                 }
                 .email-in {
                     font-family: 'AXIS';
                     font-size: 48px;
+                    @media only screen and (max-width: 1280px) {
+                        font-size: 38px;
+                    }
+                    @media only screen and (max-width: 520px) {
+                        font-size: 24px;
+                    }
                 }
             }
             .media {
@@ -40,50 +84,44 @@
                 font-family: 'Prompt-light';
                 text-transform: uppercase;
                 font-size: 24px;
+                @media only screen and (max-width: 1280px) {
+                    font-size: 20px;
+                }
+                @media only screen and (max-width: 990px) {
+                    padding-top: 40px;
+                }
+                @media only screen and (max-width: 520px) {
+                    font-size: 14px;
+                    padding-top: 10px;
+                }
             }
             .account {
                 padding-top: 20px;
                 font-family: 'Prompt-light';
                 text-transform: uppercase;
                 font-size: 24px;
+                @media only screen and (max-width: 1280px) {
+                    font-size: 20px;
+                }
+                @media only screen and (max-width: 520px) {
+                    font-size: 14px;
+                }
             }
             .account-email {
                 font-family: 'AXIS';
                 font-size: 48px;
+                @media only screen and (max-width: 1280px) {
+                    font-size: 38px;
+                }
+                @media only screen and (max-width: 520px) {
+                    font-size: 24px;
+                }
             }
             .map {
                 padding-top: 2%;
                 .map-show {
                     width: 100%;
                     height: 300px;
-                }
-            }
-        }
-        .leave-contact {
-            color: white;
-            padding-top: 10px;
-            .menu-buttom {
-                position: relative;
-                left: 50%;
-                margin: 0;
-                transform: translate(-50%, 0%);
-                width: 90%;
-                font-size: 13.5px;
-                .left-contact {
-                    padding-left: 10.625vw;
-                    p {
-                        border-bottom: 2px solid #ffffff;
-                        padding-bottom: 0px;
-                        width: fit-content;
-                    }
-                }
-                .social-menu {
-                    .text {
-                        padding-left: 0;
-                        padding-right: 0;
-                        width: 126px;
-                        text-align: left;
-                    }
                 }
             }
         }

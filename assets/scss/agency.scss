@@ -32,6 +32,9 @@
         bottom: 6.944vh;
         right: 4.8vw;
         overflow: hidden;
+        @media only screen and (max-width: 520px) {
+            display: none;
+        }
         .right-scroll-in {
             width: 2px;
             height: 242px;
@@ -50,8 +53,31 @@
             color: white;
             padding-left: 19.791666666666664vw;
             padding-right: 19.791666666666664vw;
-            padding-top: 10%;
+            padding-top: 8%;
             text-align: center;
+            @media only screen and (max-width: 1600px) {
+                padding-left: 15.791666666666664vw;
+                padding-right: 15.791666666666664vw;
+            }
+            @media only screen and (max-width: 1450px) {
+                padding-left: 10.791666666666664vw;
+                padding-right: 10.791666666666664vw;
+            }
+            @media only screen and (max-width: 1200px) {
+                padding-top: 10%;
+            }
+            @media only screen and (max-width: 970px) {
+                padding-top: 130px;
+                padding-left: 5.791666666666664vw;
+                padding-right: 5.791666666666664vw;
+            }
+            @media only screen and (max-width: 970px) {
+                padding-left: 2.791666666666664vw;
+                padding-right: 2.791666666666664vw;
+            }
+            @media only screen and (max-width: 520px) {
+                text-align: center;
+            }
             .header-text {
                 font-size: 115px;
                 font-weight: 700;
@@ -59,9 +85,23 @@
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
+                @media only screen and (max-width: 1450px) {
+                    font-size: 98px;
+                }
+                @media only screen and (max-width: 970px) {
+                    font-size: 64px;
+                }
+                @media only screen and (max-width: 520px) {
+                    display: block;
+                    text-align: center;
+                    line-height: 1.2;
+                }
                 .text-after {
                     padding-left: 30px;
                     color: #D83959;
+                    @media only screen and (max-width: 520px) {
+                        padding-left: 0px;
+                    }
                 }
             }
             .header-content {
@@ -69,6 +109,18 @@
                 line-height: 1;
                 font-size: 60px;
                 font-family: 'DB Adman X';
+                @media only screen and (max-width: 1450px) {
+                    font-size: 52px;
+                }
+                @media only screen and (max-width: 970px) {
+                    font-size: 32px;
+                }
+                @media only screen and (max-width: 520px) {
+                    padding-left: 10%;
+                    padding-right: 10%;
+                    margin-top: 20px;
+                    font-size: 18px;
+                }
                 // height: 110px;
                 // overflow: hidden;
             }
@@ -77,6 +129,12 @@
                 margin-top: 35px;
                 width: auto;
                 overflow: hidden;
+                @media only screen and (max-width: 970px) {
+                    height: 184px;
+                }
+                @media only screen and (max-width: 520px) {
+                    height: 99px;
+                }
                 .line-in {
                     width: 2px;
                     height: 100px;
@@ -84,6 +142,9 @@
                     margin-left: auto;
                     margin-right: auto;
                     // margin-top: 35px;
+                    @media only screen and (max-width: 970px) {
+                        height: 184px;
+                    }
                 }
             }
             .header-buttom {
@@ -94,6 +155,18 @@
                 font-size: 28px;
                 padding-left: 6vw;
                 padding-right: 6vw;
+                @media only screen and (max-width: 1450px) {
+                    font-size: 24px;
+                }
+                @media only screen and (max-width: 970px) {
+                    font-size: 22px;
+                }
+                @media only screen and (max-width: 520px) {
+                    margin-top: 10%;
+                    padding-left: 10%;
+                    padding-right: 10%;
+                    font-size: 13.5px;
+                }
                 span {
                     font-weight: 700;
                 }
@@ -101,6 +174,15 @@
             .growup {
                 font-size: 72px;
                 font-weight: 600;
+                @media (max-width: 1200px) {
+                    font-size: 50px;
+                }
+                @media (max-width: 950px) {
+                    font-size: 48px;
+                }
+                @media (max-width: 450px) {
+                    font-size: 24px;
+                }
                 .tital-growup {
                     font-family: 'prompt';
                     padding-left: 20px;
@@ -126,6 +208,10 @@
         }
         .theme {
             margin-top: 50px;
+            @media only screen and (max-width: 576px) {
+                padding-left: 5vw;
+                padding-right: 5vw;
+            }
             .container {
                 @media (min-width: 1200px) {
                     max-width: 1200px;
@@ -136,6 +222,7 @@
                 position: relative;
                 display: flex;
                 .person-img-in {
+                    position: relative;
                     img {
                         position: relative;
                         transition: all 0.5s linear;
@@ -148,7 +235,7 @@
                         z-index: 10;
                         transition: height 0.5s linear;
                         bottom: 0;
-                        margin-bottom: 4px;
+                        margin-bottom: 0px;
                     }
                     .mini-info {
                         position: absolute;
@@ -158,11 +245,21 @@
                         padding-top: 40px;
                         color: white;
                         transition: visibility 1s, opacity 0.5s linear;
+                        @media only screen and (max-width: 768px) {
+                            padding-left: 0;
+                        }
                         .person-name {
                             font-size: 32px;
                             font-family: 'Prompt-MediumItalic';
                             line-height: 1;
                             width: 20px;
+                            @media only screen and (max-width: 768px) {
+                                font-size: 18px;
+                                width: 100%;
+                            }
+                            @media only screen and (max-width: 520px) {
+                                padding-left: 10px;
+                            }
                         }
                         .person-about {
                             font-size: 24px;
@@ -170,6 +267,14 @@
                             line-height: 1;
                             width: 300px;
                             margin-top: 90%;
+                            @media only screen and (max-width: 768px) {
+                                font-size: 13.5px;
+                                margin-top: 60%;
+                                width: 100%;
+                            }
+                            @media only screen and (max-width: 520px) {
+                                padding-left: 10px;
+                            }
                         }
                     }
                 }
@@ -180,12 +285,29 @@
                     background-color: rgba(28, 44, 88, 0.75);
                     // background-color: transparent;
                     left: 0;
+                    @media only screen and (max-width: 520px) {
+                        position: fixed;
+                        left: 0;
+                        top: 0;
+                        height: 100% !important;
+                    }
                     .bg-peson {
                         height: 100%;
                         background-color: #D83959;
-                        right: 3.5%;
+                        right: 10px;
                         position: absolute;
                         transition: width 0.5s linear;
+                        @media only screen and (max-width: 520px) {
+                            right: 2.8%;
+                        }
+                        .row {
+                            @media only screen and (max-width: 992px) {
+                                height: 50% !important;
+                            }
+                            @media only screen and (max-width: 768px) {
+                                height: 70% !important;
+                            }
+                        }
                         .mini-info {
                             position: absolute;
                             z-index: 11;
@@ -199,6 +321,9 @@
                                 font-family: 'Prompt-MediumItalic';
                                 line-height: 1;
                                 width: 20px;
+                                @media only screen and (max-width: 520px) {
+                                    padding-left: 10px;
+                                }
                             }
                             .person-about {
                                 font-size: 24px;
@@ -206,6 +331,15 @@
                                 line-height: 1;
                                 width: 300px;
                                 margin-top: 90%;
+                                @media only screen and (max-width: 1280px) {
+                                    margin-top: 65%;
+                                }
+                                @media only screen and (max-width: 992px) {
+                                    margin-top: 10%;
+                                }
+                                @media only screen and (max-width: 520px) {
+                                    padding-left: 10px;
+                                }
                             }
                         }
                         .long-desc {
@@ -216,6 +350,15 @@
                             color: white;
                             transition: visibility 0.5s, opacity 0.2s linear;
                             position: absolute;
+                            @media only screen and (max-width: 1280px) {
+                                font-size: 13.5px;
+                                line-height: 1.2;
+                            }
+                            @media only screen and (max-width: 992px) {
+                                font-size: 13.5px;
+                                line-height: 1.8;
+                                padding-left: 30px;
+                            }
                         }
                     }
                 }
@@ -242,33 +385,6 @@
             transition: all 0.5s linear;
             padding-top: 10px;
         }
-        .leave-contact {
-            color: white;
-            .menu-buttom {
-                position: relative;
-                left: 50%;
-                margin: 0;
-                transform: translate(-50%, -50%);
-                width: 90%;
-                font-size: 13.5px;
-                .left-contact {
-                    padding-left: 10.625vw;
-                    p {
-                        border-bottom: 2px solid #ffffff;
-                        padding-bottom: 0px;
-                        width: fit-content;
-                    }
-                }
-                .social-menu {
-                    .text {
-                        padding-left: 0;
-                        padding-right: 0;
-                        width: 126px;
-                        text-align: left;
-                    }
-                }
-            }
-        }
     }
     .growup-page {
         height: 100%;
@@ -276,11 +392,20 @@
             color: white;
             padding-left: 7.2vw;
             padding-right: 7.2vw;
-            padding-top: 6%;
+            padding-top: 130px;
             text-align: center;
             .growup {
                 font-size: 72px;
                 font-weight: 600;
+                @media (max-width: 1200px) {
+                    font-size: 50px;
+                }
+                @media (max-width: 950px) {
+                    font-size: 48px;
+                }
+                @media (max-width: 450px) {
+                    font-size: 24px;
+                }
                 .tital-growup {
                     font-family: 'prompt';
                     padding-left: 20px;
@@ -302,11 +427,14 @@
                 position: relative;
                 display: flex;
                 .person-img-in {
+                    position: relative;
                     .cover-image {
                         position: relative;
                         img {
-                            width: 393px;
-                            height: 525px;
+                            // width: 393px;
+                            object-fit: cover;
+                            width: auto;
+                            height: auto;
                             position: relative;
                             transition: all 0.5s linear;
                         }
@@ -416,34 +544,6 @@
             }
             .person-img:hover {}
         }
-        .leave-contact {
-            color: white;
-            padding-top: 110px;
-            .menu-buttom {
-                position: relative;
-                left: 50%;
-                margin: 0;
-                transform: translate(-50%, -50%);
-                width: 90%;
-                font-size: 13.5px;
-                .left-contact {
-                    padding-left: 10.625vw;
-                    p {
-                        border-bottom: 2px solid #ffffff;
-                        padding-bottom: 0px;
-                        width: fit-content;
-                    }
-                }
-                .social-menu {
-                    .text {
-                        padding-left: 0;
-                        padding-right: 0;
-                        width: 126px;
-                        text-align: left;
-                    }
-                }
-            }
-        }
     }
     .modal-growup {
         position: fixed;
@@ -524,6 +624,12 @@
             transform: translate(-50%, 0%);
             z-index: 9999;
             transition: top 0.5s ease 0s;
+            @media (max-width: 980px) {
+                width: 89%;
+            }
+            @media (max-width: 450px) {
+                padding-left: 10px;
+            }
             .row {
                 width: 100%;
                 align-items: center;
@@ -555,23 +661,55 @@
             height: 87%;
             background-color: white;
             transition: top 0.5s ease 0s;
+            @media (max-width: 980px) {
+                width: 90%;
+            }
+            @media (max-width: 450px) {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
             .header-modal {
-                margin-top: 10%;
+                margin-top: 70px;
                 padding-left: 17px;
                 padding-right: 17px;
                 font-family: 'DB Adman X';
                 font-size: 60px;
                 line-height: 1;
+                @media (max-width: 980px) {
+                    font-size: 38px
+                }
+                @media (max-width: 450px) {
+                    font-size: 24px;
+                    // padding-left: 5px;
+                    // padding-right: 5px;
+                }
             }
             .image-modal {
                 margin-top: 50px;
                 width: 100%;
                 text-align: center;
+                @media (max-width: 480px) {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    margin-top: 20px;
+                }
             }
             .content-modal {
                 margin-top: 50px;
                 font-family: 'Prompt-light';
                 font-size: 13.5px;
+                @media (max-width: 450px) {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+                .content-modal-header {
+                    @media (max-width: 480px) {
+                        display: flex;
+                        p {
+                            width: 50%;
+                        }
+                    }
+                }
                 .header-1 {
                     font-family: 'DB Adman X';
                     font-size: 20px;
@@ -583,6 +721,10 @@
                 font-family: 'Prompt-light';
                 font-size: 13.5px;
                 margin-top: 50px;
+                @media (max-width: 450px) {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
                 .footer-modal {
                     margin-top: 20px;
                     span {

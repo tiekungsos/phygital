@@ -28,7 +28,7 @@ export default {
     ],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-    plugins: ['~/plugins/scholl.js'],
+    plugins: ['~/plugins/transition.js', '~/plugins/axios'],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,
@@ -36,11 +36,56 @@ export default {
     // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
     buildModules: [],
 
+    axios: {
+        baseURL: `https://api.example.com/`,
+        proxyHeaders: false,
+        credentials: false
+    },
+    sitemap: {
+        hostname: "http://phygital-test.surge.sh/",
+        gzip: true
+    },
+    googleAnalytics: {
+        id: "UA-12301-2"
+    },
+
     // Modules (https://go.nuxtjs.dev/config-modules)
     modules: [
         // https://go.nuxtjs.dev/bootstrap
         'bootstrap-vue/nuxt',
-        '@nuxtjs/style-resources',
+        "@nuxtjs/google-analytics",
+        '@nuxtjs/axios',
+        "@nuxtjs/pwa",
+        "@nuxtjs/sitemap",
+        '@nuxtjs/style-resources', ['nuxt-lazy-load', {
+            // These are the default values
+            images: false,
+            videos: true,
+            audios: true,
+            iframes: true,
+            native: false,
+            polyfill: true,
+            directiveOnly: false,
+
+            // Default image must be in the static folder
+
+
+            // To remove class set value to false
+            // loadingClass: 'isLoading',
+            // loadedClass: 'isLoaded',
+            // appendClass: 'lazyLoad',
+
+            observerConfig: {
+                // See IntersectionObserver documentation
+            }
+        }],
+        [
+            "nuxt-imagemin",
+            {
+                optipng: { optimizationLevel: 5 },
+                gifsicle: { optimizationLevel: 2 }
+            }
+        ]
     ],
 
     bootstrapVue: {
@@ -49,7 +94,24 @@ export default {
     },
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)
-    build: {},
+    build: {
+        analyze: true,
+        collapseBooleanAttributes: true,
+        decodeEntities: true,
+        minifyCSS: true,
+        minifyJS: true,
+        processConditionalComments: true,
+        removeEmptyAttributes: true,
+        removeRedundantAttributes: true,
+        trimCustomFragments: true,
+        useShortDoctype: true,
+        splitChunks: {
+            chunks: 'all',
+            automaticNameDelimiter: '.',
+            name: undefined,
+            cacheGroups: {}
+        }
+    },
 
     styleResources: {
         scss: [
@@ -59,5 +121,36 @@ export default {
     pageTransition: {
         name: 'index',
         mode: 'out-in'
+    },
+    optimizedImages: {
+        inlineImageLimit: 1000,
+        imagesName: ({ isDev }) => isDev ? '[path][name][hash:optimized].[ext]' : 'img/[contenthash:7].[ext]',
+        responsiveImagesName: ({ isDev }) => isDev ? '[path][name]--[width][hash:optimized].[ext]' : 'img/[contenthash:7]-[width].[ext]',
+        handleImages: ['jpeg', 'png', 'svg', 'webp', 'gif'],
+        optimizeImages: true,
+        optimizeImagesInDev: false,
+        defaultImageLoader: 'img-loader',
+        mozjpeg: {
+            quality: 80,
+        },
+        optipng: {
+            optimizationLevel: 3,
+        },
+        pngquant: false,
+        gifsicle: {
+            interlaced: true,
+            optimizationLevel: 3,
+        },
+        svgo: {
+            // enable/disable svgo plugins here
+        },
+        webp: {
+            preset: 'default',
+            quality: 75,
+        },
+    },
+    axios: {
+        // proxy: true
+        baseURL: 'http://127.0.0.1/api/v1',
     }
 }

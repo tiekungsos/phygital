@@ -9,18 +9,28 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@aceforth/nuxt-optimized-images": "^1.4.0",
+    "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/google-analytics": "^2.4.0",
+    "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/sitemap": "^2.4.0",
     "animate.css": "^4.1.1",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
     "magic-grid": "^3.2.4",
     "nuxt": "^2.14.6",
+    "nuxt-google-optimize": "^0.5.4",
+    "nuxt-imagemin": "^1.0.0",
+    "nuxt-lazy-load": "^1.2.4",
+    "nuxt-lazyimage": "^2.0.1",
     "vue": "^2.6.12",
     "vue-aos": "^1.1.0",
     "vue-burger": "^1.1.0",
     "vue-carousel": "^0.18.0",
     "vue-check-view": "^0.3.0",
     "vue-grid-layout": "^2.3.11",
+    "vue-page-transition": "^0.2.2",
     "vue-scroll": "^2.1.13",
     "vue-scroll-snap": "^0.1.10",
     "vue-slick-carousel": "^1.0.6",
@@ -28,8 +38,17 @@
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
+    "imagemin-gifsicle": "^6.0.1",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^6.0.1",
+    "imagemin-svgo": "^7.1.0",
     "ip": "^1.1.5",
+    "lqip-loader": "^2.2.1",
     "node-sass": "^5.0.0",
-    "sass-loader": "^10.1.0"
+    "responsive-loader": "^2.3.0",
+    "sass-loader": "^10.1.0",
+    "sharp": "^0.27.1",
+    "sqip-loader": "^1.0.0",
+    "webp-loader": "^0.6.0"
   }
 }

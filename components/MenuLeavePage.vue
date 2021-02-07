@@ -1,6 +1,6 @@
 <template>
 <div>
-        <b-row class="leave-contact-menu" :style="{'cursor' :`url(${cursorUrl}),auto`}">
+        <b-row class="leave-contact" :style="{'cursor' :`url(${cursorUrl}),auto`}">
             <b-col cols="8" md="10" lg="10" xl="5" class="left-contact animate__animated animate__fadeInUp animate__delay-1000ms" >
                 <p  v-on:click="showLeaveContact()" >Leave your contact</p>
             </b-col>
@@ -10,7 +10,7 @@
         </b-row>
 
  
-        <div class="leave-contact-from animate__animated animate__fadeInUpBig" v-if="leaveContactShow" :style="[leaveContactParam ? {'height': '100vh'} : {'height': '0'}]">
+        <div class="leave-contact-from animate__animated animate__fadeInUpBig" v-if="leaveContactShow" :style="[leaveContactParam ? {'height': '100%'} : {'height': '0'},{'position':'fixed','bottom' : 0}]">
             <div class="box-leave animate__animated animate__fadeInUpBig animate__delay-500ms" v-if="leaveContactParamBoxShow" :style="[leaveContactParamBox ? {'bottom': '6%'} : {'bottom': '-100%'}]">
                 <div class="close" v-on:click="hideLeaveContact()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14.946" height="14.946" viewBox="0 0 14.946 14.946">
@@ -42,14 +42,14 @@
             <div class="box-directily-in-hover" @mouseover="hoverContact"></div>
             <div v-if="directilyShow" class="box-directily"  :style="[directily ? {'opacity': '1'} : {'opacity': '0'}]">
                 <nuxt-link to="contact">
-                <div :style="{'cursor' :`url(${cursorUrl}),auto`,}" class="box-directily-in" @mouseleave="leaveContact">
-                    <div class="header">
-                        CAN’t wait ?
+                    <div :style="{'cursor' :`url(${cursorUrl}),auto`,}" class="box-directily-in" @mouseleave="leaveContact">
+                        <div class="header">
+                            CAN’t wait ?
+                        </div>
+                        <div class="content">
+                            Contact us directly
+                        </div>
                     </div>
-                    <div class="content">
-                        Contact us directly
-                    </div>
-                </div>
                 </nuxt-link>
             </div>
         </div>
@@ -75,7 +75,6 @@ export default {
     methods: {
     showLeaveContact() {
          document.body.classList.add("modal-open");
-
         this.leaveContactShow = true
         this.leaveContactParamBoxShow = true
         setTimeout(() => {
@@ -84,7 +83,7 @@ export default {
         }, 200);
     },
     hideLeaveContact () {
-         document.body.classList.remove("modal-open");
+        document.body.classList.remove("modal-open");
         this.leaveContactParamBox = false
         setTimeout(() => {
               this.leaveContactParamBoxShow = false
