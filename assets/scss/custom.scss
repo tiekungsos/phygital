@@ -1,10 +1,16 @@
 .main {
     background-color: white;
     font-family: 'Axis';
+    .slick-track {
+        .slick-slide {
+            margin-bottom: -10px;
+        }
+    }
     .image-slide-main {
         width: 100%;
         height: 100vh;
         display: flex;
+        overflow: hidden;
         .image-slide {
             width: 90.83vw;
             position: relative;
@@ -147,10 +153,25 @@
                     color: red;
                 }
             }
+            .videos-player {
+                overflow: hidden;
+                @media only screen and (min-width: 1620px) {
+                    height: 100vh;
+                }
+                .videos {
+                    height: 100vh;
+                    width: auto;
+                    margin-left: 0;
+                }
+            }
         }
         .image-slide-right {
             width: 9.17vw;
             position: relative;
+            overflow: hidden;
+            .img-rightSide {
+                overflow: hidden;
+            }
             .backChangeColor {
                 width: 0%;
                 height: 0%;
@@ -800,4 +821,15 @@ a:hover {
             }
         }
     }
+}
+
+.toasted-container.bottom-left {
+    left: 11.5%;
+    bottom: 34%;
+    z-index: 99999999999;
+}
+
+.toasted.bubble {
+    background-color: #E91E56 !important;
+    z-index: 99999999999;
 }

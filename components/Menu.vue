@@ -63,7 +63,7 @@
     
         <div class="pg-nav">
             <div class="logo">
-                <nuxt-link to="/"><img src="~/assets/image/logo/logo1.png" alt="logo 1" v-if="!isActive" :style="{'cursor' :`url(${cursorDotUrl}) 10 15,auto`}"></nuxt-link>
+                <nuxt-link to="/"><img :src="$store.state.setting.meta.logo" alt="logo 1" v-if="!isActive" :style="{'cursor' :`url(${cursorDotUrl}) 10 15,auto`}"></nuxt-link>
             </div>
             <div class="center" v-on:click="showMenu()">
                 <v-burger type="spin" :active="isActive" @updated="isActive = $event" :burgerStyle="burgerStyle" :style="{'cursor' :`url(${cursorDotUrl}),auto`}" />
@@ -82,7 +82,6 @@
 
 <script>
 import 'animate.css';
-import VueAos from 'vue-aos'
 import { VBurger } from 'vue-burger';
 import cursorDotUrl from '~/assets/image/icon/dot.png'
 import cursorUrl from '~/assets/image/icon/right.png'
@@ -123,7 +122,6 @@ export default {
         this.handleResize();
     },
     components: {
-        VueAos,
         VBurger
     },
     methods: {

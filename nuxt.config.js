@@ -10,12 +10,11 @@ export default {
         title: 'phygital',
         meta: [
             { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: '' }
+            { name: 'viewport', content: 'width=device-width, initial-scale=1' }
         ],
-        link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-        ]
+        // link: [
+        //     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+        // ]
     },
 
     // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -34,7 +33,7 @@ export default {
     components: true,
 
     // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-    buildModules: [],
+    buildModules: ['@nuxtjs/pwa'],
 
     axios: {
         baseURL: `https://api.example.com/`,
@@ -151,6 +150,14 @@ export default {
     },
     axios: {
         // proxy: true
-        baseURL: 'http://127.0.0.1/api/v1',
-    }
+
+
+
+        // baseURL: 'http://127.0.0.1/api/v1',
+        baseURL: 'http://phygital-agency.herokuapp.com/api/v1',
+    },
+    env: {
+        videosUrl: 'http://phygital-agency.herokuapp.com/storage/'
+    },
+    loading: '~/components/loading.vue'
 }

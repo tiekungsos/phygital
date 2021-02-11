@@ -194,11 +194,13 @@ import product12 from '~/assets/image/growup/12.png'
 Vue.use(vuescroll)
 
 export default {
-    async asyncData({ $axios }) {
-        let blogs = await $axios.get("/growup-blogs");
-        let categories = await $axios.get("/growup-categories");
-        blogs = blogs.data
-        categories = categories.data
+    async asyncData({store,  $axios }) {
+    if(store.state.setting.length === 0){
+            await store.dispatch('fetchSetting')
+        }
+
+        let blogs = store.state.blogs;
+        let categories = store.state.growupcategories
 
         var blog = [];
         var categorie = [];

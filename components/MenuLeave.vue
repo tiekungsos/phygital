@@ -30,9 +30,9 @@
                     </b-col>
                     <b-col class="from" cols="12">
                         <b-form @submit="onSubmit">
-                            <b-form-input type="text" name="name" id="name" placeholder="Your Name"></b-form-input>
-                            <b-form-input type="email" name="email" id="email" placeholder="Email"></b-form-input>
-                            <b-form-input type="number" name="phone" id="phone" placeholder="PHOME NUMBER"></b-form-input>
+                            <b-form-input v-model="data.name" type="text" name="name" id="name" placeholder="Your Name"></b-form-input>
+                            <b-form-input v-model="data.email" type="email" name="email" id="email" placeholder="Email"></b-form-input>
+                            <b-form-input v-model="data.phone_number" type="number" name="phone" id="phone" placeholder="PHOME NUMBER"></b-form-input>
                             <b-button type="submit">Submit</b-button>
                         </b-form>
                     </b-col>
@@ -69,7 +69,13 @@ export default {
             leaveContactParamBox : false,
             cursorUrl,
             directilyShow : false,
-            directily : false
+            directily : false,
+            data : {
+                name : '',
+                email : '',
+                phone_number : ''
+            },
+            onload: false
         }
     },
     methods: {
@@ -99,9 +105,30 @@ export default {
         }, 1500);
        
     },
-    onSubmit(event) {
-        event.preventDefault()
-        alert(JSON.stringify(this.form))
+   async onSubmit(event) {
+               event.preventDefault()
+            this.onload = true;
+
+            await this.$axios.$post('/contactuses', this.data).then(function(response) {
+
+                this.data = {
+                    name: '',
+                    email: '',
+                    phone_number: ''
+                }
+                setTimeout(() => {
+                    this.onload = false;
+                    this.$toasted.show("Success contact information and we will contact you as soon as possible.", {
+                        theme: "bubble",
+                        position: "bottom-center",
+                        duration: 5000
+                    });
+                }, 1400);
+
+                setTimeout(() => { this.hideLeaveContact(); }, 500);
+
+                this.hideLeaveContact();
+            }.bind(this));
     },
     hoverContact(){ 
         this.directilyShow = true

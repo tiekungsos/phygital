@@ -176,14 +176,14 @@ Vue.use(vuescroll)
 
 export default {
     transition: "intro",
-    async asyncData({ $axios }) {
-        let  teams  = await $axios.get("/ourteams");
-        let  clients = await $axios.get("/ourclients");
+    async asyncData({ store, $axios }) {
 
-            console.log(clients);
-        teams = teams.data
-        clients = clients.data
-
+        if(store.state.setting.length === 0){
+            await store.dispatch('fetchSetting')
+        }
+   
+        let  teams  = store.state.teams;
+        let  clients = store.state.clients;
         var team = [];
         var clientsdata = [];
 

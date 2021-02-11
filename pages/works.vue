@@ -21,10 +21,10 @@
                     <div class="icon-serach">
                         <div class="serch-result" v-on:click="searchData()">
                             <svg id="searching" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-                                                                <g id="Group_56" data-name="Group 56" transform="translate(0)">
-                                                                    <path id="Path_3" data-name="Path 3" d="M2.264,2.264A7.728,7.728,0,0,1,15.457,7.728a7.671,7.671,0,0,1-1.9,5.079L17.846,17.1a.528.528,0,1,1-.747.747l-4.292-4.292A7.728,7.728,0,0,1,0,7.728,7.678,7.678,0,0,1,2.264,2.264Zm.747,10.183a6.669,6.669,0,1,0,0-9.436A6.68,6.68,0,0,0,3.011,12.446Z" transform="translate(-0.001 0)" fill="#fff"/>
-                                                                </g>
-                                                            </svg>
+                                                                    <g id="Group_56" data-name="Group 56" transform="translate(0)">
+                                                                        <path id="Path_3" data-name="Path 3" d="M2.264,2.264A7.728,7.728,0,0,1,15.457,7.728a7.671,7.671,0,0,1-1.9,5.079L17.846,17.1a.528.528,0,1,1-.747.747l-4.292-4.292A7.728,7.728,0,0,1,0,7.728,7.678,7.678,0,0,1,2.264,2.264Zm.747,10.183a6.669,6.669,0,1,0,0-9.436A6.68,6.68,0,0,0,3.011,12.446Z" transform="translate(-0.001 0)" fill="#fff"/>
+                                                                    </g>
+                                                                </svg>
                         </div>
                         <div class="icon-plus icon-serach-in">
                             <v-burger type="spin" :active="isActive" @updated="isActive = $event" />
@@ -160,8 +160,8 @@
                 <div class="related-current" @mouseover="hoverImageDetail()" @mouseleave="leaveImageDetail()" v-on:click="showDetailBlock(workDetail.related.group,workDetail.related.index)">
                     <div class="arrow-left">
                         <svg xmlns="http://www.w3.org/2000/svg" width="36.792" height="11.777" viewBox="0 0 36.792 11.777">
-                                                            <path id="right-arrow-3" d="M36.792,167.781,30.9,173.67V168.94H0v-2.318H30.9v-4.729Z" transform="translate(36.792 173.67) rotate(180)" fill="#f9f9f9"/>
-                                                        </svg>
+                                                                <path id="right-arrow-3" d="M36.792,167.781,30.9,173.67V168.94H0v-2.318H30.9v-4.729Z" transform="translate(36.792 173.67) rotate(180)" fill="#f9f9f9"/>
+                                                            </svg>
                     </div>
                     <div class="cover-image">
                         <div class="cover" :style="{'width' :`${workDetail.related.style.width}%`,'height' :`${workDetail.related.style.height}%`}"></div>
@@ -183,8 +183,8 @@
                 <div class="related-next" v-on:click="nextRealated(workDetail.related.indexinListData)">
                     <div class="arrow-right">
                         <svg xmlns="http://www.w3.org/2000/svg" width="36.792" height="11.777" viewBox="0 0 36.792 11.777">
-                                                            <path id="right-arrow-3" d="M36.792,5.888,30.9,0V4.729H0V7.047H30.9v4.729Z" fill="#f9f9f9"/>
-                                                        </svg>
+                                                                <path id="right-arrow-3" d="M36.792,5.888,30.9,0V4.729H0V7.047H30.9v4.729Z" fill="#f9f9f9"/>
+                                                            </svg>
                     </div>
                     <img v-lazy-load class="img-fluid" :src="workDetail.related.next" alt="">
                 </div>
@@ -202,7 +202,6 @@ import Vue from 'vue'
 import cursorUrl from '~/assets/image/icon/right.png'
 import 'animate.css';
 import ImageComponent from '../components/Image.vue';
-import { VBurger } from 'vue-burger';
 import workDetailImage from '~/assets/image/works/work-detail/1.png'
 
 import workDetailImage1 from '~/assets/image/works/work-detail/2.png'
@@ -220,15 +219,18 @@ import related2 from '~/assets/image/works/work-detail/related2.png'
 import cursorUrlLeft from '~/assets/image/icon/left.png'
 
 export default {
+  watch: {
+  },
     transition: 'page', // set our transition with nuxt.js
-    async asyncData({ $axios }) {
-        let works = await $axios.get("/works");
-        let categories = await $axios.get("/work-categories");
-        let serchTag = await $axios.get("/serch-tags");
+    async asyncData({store, $axios }) {
+        if(store.state.setting.length === 0){
+            await store.dispatch('fetchSettingWork')
+        }
+        store.dispatch('fetchSetting')
 
-        works = works.data
-        categories = categories.data
-        serchTag = serchTag.data
+        let works = store.state.works;
+        let categories = store.state.categories;
+        let serchTag = store.state.serchTag;
 
         var listDataitem = [],
             categorie = [],
@@ -247,9 +249,26 @@ export default {
             ],
             limitImage = 20;
 
+        var numbercheck = 3;
+
+
+
+        if (window.innerWidth <= '950' && window.innerWidth > '574') {
+            numbercheck = 2
+            imagesData = [
+                { 'group': [] },
+                { 'group': [] },
+                { 'group': [] }
+            ]
+        } else if (window.innerWidth <= '574') {
+            numbercheck = 0
+            imagesData = [
+                { 'group': [] }
+            ]
+        }
+
         works.data.forEach((person, index) => {
-            var numbercheck = 3,
-                numbercheckGallery = 3;
+            var numbercheckGallery = 3;
             var gallery = [
                 { 'group': [] },
                 { 'group': [] },
@@ -258,14 +277,7 @@ export default {
             ];
 
             if (window.innerWidth <= '950' && window.innerWidth > '574') {
-                numbercheck = 2
                 numbercheckGallery = 2
-                imagesData = [
-                    { 'group': [] },
-                    { 'group': [] },
-                    { 'group': [] }
-                ]
-
                 gallery = [
                     { 'group': [] },
                     { 'group': [] },
@@ -273,18 +285,13 @@ export default {
                 ]
 
             } else if (window.innerWidth <= '574') {
-                numbercheck = 0
                 numbercheckGallery = 1
-                imagesData = [
-                    { 'group': [] }
-                ]
-
                 gallery = [
                     { 'group': [] },
                     { 'group': [] }
                 ]
-
             }
+
 
             // loop for type
             var types = [],
@@ -343,7 +350,6 @@ export default {
                     group = 0
                     indexData = indexData + 1
                 }
-
                 count = count + 1;
 
                 var height = 0,
@@ -387,6 +393,8 @@ export default {
                     'releateWork': [...new Set(releateWork)]
                 })
 
+
+
                 listDataitem.push({
                     'pathLong': person.header_image.url,
                     // pathShort: key,
@@ -418,6 +426,7 @@ export default {
                     'gallery': gallery,
                     'releateWork': [...new Set(releateWork)]
                 })
+                console.log(imagesData);
 
                 group += 1
             }
@@ -443,8 +452,6 @@ export default {
 
             serach.push(data)
         });
-
-        console.log(listDataitem);
 
         return { title: categorie, images: imagesData, serchTag: serach, listData: listDataitem }
     },
@@ -545,10 +552,6 @@ export default {
                 height: 0
             },
         }
-    },
-    components: {
-        VBurger
-
     },
     created() {
         window.addEventListener('resize', this.handleResize);
